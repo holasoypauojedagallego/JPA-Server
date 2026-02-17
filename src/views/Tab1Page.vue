@@ -13,11 +13,19 @@
       </ion-header>
 
       <ExploreContainer name="Tab 1 page" />
+      <IonImg class="imagen" src="../../public/favicon.png"></IonImg>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonImg } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 </script>
+
+<style>
+.imagen {
+  width: 440px;
+  height: 440px;
+}
+</style>
