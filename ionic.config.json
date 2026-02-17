@@ -1,0 +1,7 @@
+{
+  "name": "JPA Server",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
