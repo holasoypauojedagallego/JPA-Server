@@ -3,27 +3,24 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
+
+        <ion-tab-button tab="tab1" href="/home/servers">
           <ion-icon aria-hidden="true" :icon="searchOutline" />
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
+        <ion-tab-button tab="tab2" href="/home/createServer">
           <ion-icon aria-hidden="true" :icon="constructOutline" />
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
+        <ion-tab-button tab="tab3" href="/home/messages">
           <ion-icon aria-hidden="true" :icon="chatbubblesOutline" />
   
         </ion-tab-button>
 
-        <ion-tab-button tab="tab4" href="/tabs/tab4">
+        <ion-tab-button tab="tab4" href="/home/profile">
           <ion-icon aria-hidden="true" :icon="personCircleOutline" />
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/tabs/tab4">
-          <ion-icon aria-hidden="true" :icon="square" />
-          <ion-label>Tab 4</ion-label>
-        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
