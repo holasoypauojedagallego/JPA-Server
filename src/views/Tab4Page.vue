@@ -11,6 +11,9 @@
           <ion-title size="large">Profile</ion-title>
         </ion-toolbar>
       </ion-header>
+      <ion-button>
+        <span class="primary" @click="goToLogin">Volver a Iniciar Sesion</span>
+      </ion-button>
 
       <ExploreContainer name="Profile page" />
     </ion-content>
@@ -18,6 +21,13 @@
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goToLogin = () => {
+  router.push("/login");
+}
 </script>

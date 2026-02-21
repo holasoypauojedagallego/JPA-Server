@@ -11,35 +11,32 @@
             <ion-input class="glass-input" type="password" placeholder="Ingrese su contraseña..."></ion-input>
             <ion-input class="glass-input" type="password" placeholder="Confirme su contraseña..."></ion-input>
   
-            <ion-button class="red-button">
-              <span class="underline-text">Registrarse</span>
+            <ion-button>
+              <span>Registrarse</span>
             </ion-button>
   
-            <a href="#" @click.prevent="goToLogin" class="link-back">Volver</a>
+            <a @click="goToLogin" class="link-back">Volver</a>
           </div>
         </div>
       </ion-content>
     </ion-page>
-  </template>
+</template>
   
-  <script setup>
-  import { IonPage, IonContent, IonInput, IonButton } from '@ionic/vue';
-  import { useRouter } from 'vue-router';
+<script setup>
+import { IonPage, IonContent, IonInput, IonButton } from '@ionic/vue';
+import { useRouter } from 'vue-router';
   
-  const router = useRouter();
+const router = useRouter();
   
-  const goToLogin = () => {
-    router.push('/login'); // Regresa a la vista de login
-  };
-  </script>
+const goToLogin = () => {
+  router.push('/login'); // Regresa a la vista de login
+};
+</script>
   
-  <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300;1,400&display=swap');
-  
+<style scoped>
+
   .register-bg {
-    /* Fondo cambiado a uno de coche oscuro/nocturno como en tu captura */
-    --background: url('https://images.unsplash.com/photo-1544605417-36e2f69cb2f1?q=80&w=2070') no-repeat center center / cover;
-    font-family: 'Exo 2', sans-serif;
+    --background: url('../../public/Fondo-3.png') no-repeat center center / cover;
   }
   
   .vignette-overlay {
@@ -83,36 +80,19 @@
   }
   
   .glass-input {
-    --background: rgba(45, 45, 45, 0.85);
+    --background: rgba(45, 45, 45, 0.93);
     --color: #a0a0a0;
     --placeholder-color: #777;
     --placeholder-font-style: italic;
-    --placeholder-opacity: 1;
+    --placeholder-opacity: 0.75;
     --padding-start: 15px;
     --padding-end: 15px;
     --border-radius: 25px;
-    font-size: 13px;
+    font-size: 14px;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     min-height: 40px;
   }
   
-  .red-button {
-    --background: #c31d1d;
-    --background-hover: #a11717;
-    --border-color: #520606;
-    --border-style: solid;
-    --border-width: 2px;
-    --border-radius: 6px;
-    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    margin-top: 10px;
-    height: 38px;
-    width: 160px;
-    font-size: 13px;
-    font-weight: 400;
-    text-transform: none;
-  }
   
   .underline-text {
     text-decoration: underline;
