@@ -16,10 +16,11 @@
             </ion-button>
           </form>
 
+          <div class="link-register bg-[#333]/65 sm:bg-black/0 p-1 rounded-lg">
             <a @click="goToRegister" class="link-register">Registrarse</a>
+          </div>
           
-
-          <div class="footer-container">
+          <div class="footer-container bg-[#333]/65 sm:bg-black/0 p-1 rounded-lg">
             <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
           </div>
         </div>
@@ -48,11 +49,9 @@ const goToRecover = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300;1,400&display=swap');
 
 .login-bg {
   --background: url('/Fondo-2.png') no-repeat center center / cover;
-  font-family: 'Exo 2', sans-serif;
 }
 
 .login-div {
@@ -113,25 +112,21 @@ const goToRecover = () => {
 .link-register {
   color: #e1e1e1;
   font-size: 15px;
-  margin-top: 15px;
-  padding-top: 5px;
+  margin-top: 33px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   transition: 0.2s;
+  text-decoration: none;
 }
 
-.border {
-  
-}
-
-.link-register:hover { text-decoration: underline; color: #fff; transform: scale(1.02);}
+.link-register:hover { text-decoration: underline; color: #eee; transform: scale(1.02);}
 
 .footer-container { margin-top: 80px; }
 
 .link-forgot {
-  color: #AAA;
+  color: #d1d1d1;
   font-size: 14px;
   transition: 0.2s;
 }
 
-.link-forgot:hover { text-decoration: underline; color: #aaa; font-size: 14.3px;}
+.link-forgot:hover { text-decoration: underline; color: #eee; font-size: 14.3px;}
 </style>

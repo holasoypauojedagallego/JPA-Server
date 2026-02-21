@@ -4,7 +4,7 @@
       <div class="vignette-overlay"></div>
 
       <div v-if="step === 1" class="login-wrapper">
-        <h1 class="login-title">Recuperar Cuenta</h1>
+        <h1 class="login-title p-5">Recuperar Cuenta</h1>
         <div class="form-container">
           <ion-input class="glass-input" placeholder="Ingrese su nombre de usuario..."></ion-input>
           
@@ -28,7 +28,7 @@
       </div>
 
       <div v-if="step === 3" class="login-wrapper">
-        <h1 class="login-title">Recuperar Cuenta</h1>
+        <h1 class="login-title p-5">Recuperar Cuenta</h1>
         <div class="form-container">
           <ion-input class="glass-input" type="password" placeholder="Ingrese su nueva contraseña..."></ion-input>
           <ion-input class="glass-input" type="password" placeholder="Ingrese de nuevo su nueva contraseña..."></ion-input>
@@ -73,7 +73,6 @@ const goToLogin = () => {
 </script>
 
 <style scoped>
-/* (Aquí van los mismos estilos del Lexus, los inputs glass y el modal oscuro que usamos antes) */
 .recover-bg {
   --background: url('https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=2000') no-repeat center center / cover;
 }
@@ -85,6 +84,8 @@ const goToLogin = () => {
      flex-direction: column; 
      align-items: center; 
      justify-content: center; 
+     width: 90%;
+     justify-self: center;
 }
 
 .form-container {

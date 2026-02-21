@@ -3,8 +3,8 @@
     <ion-content class="success-bg" :scrollY="false">
       <div class="vignette-overlay"></div>
 
-      <div class="success-wrapper">
-        <div class="info-panel">
+      <div class="success-wrapper md:ml-[55vw] sm:ml-[45vw]">
+        <div class="info-panel md:bg-black/0 bg-[#333333]/75 rounded-md p-3 md:m-0 mt-50">
           <h1 class="main-title">Cuenta Creada!</h1>
 
           <div class="user-data">
@@ -35,18 +35,14 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const goToNext = () => {
-  // Aquí puedes decidir a dónde va después. 
-  // Por ahora lo mandamos al login o a un dashboard imaginario
   router.push('/login');
-  // router.push('/dashboard'); 
 };
 </script>
 
 <style scoped>
 
 .success-bg {
-  /* Fondo de piloto de carreras de Unsplash */
-  --background: url('../../public/fondopc\ 1.png') no-repeat center center / cover;
+  --background: url('/fondopc1.png') no-repeat center center / cover;
 }
 
 .vignette-overlay {
@@ -64,8 +60,7 @@ const goToNext = () => {
   height: 80%;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Alinea a la derecha */
-  padding-right: 12vw; /* Margen derecho */
+  justify-content: center; /* Alinea a la derecha */
 }
 
 /* El panel en sí alinea sus textos a la izquierda */
