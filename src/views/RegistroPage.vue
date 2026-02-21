@@ -11,9 +11,11 @@
             <ion-input class="glass-input" type="password" placeholder="Ingrese su contraseña..."></ion-input>
             <ion-input class="glass-input" type="password" placeholder="Confirme su contraseña..."></ion-input>
   
-            <ion-button class="red-button">
-              <span class="underline-text">Registrarse</span>
+            <ion-button class="red-button" @click="handleRegister">
+            <span class="underline-text">Registrarse</span>
             </ion-button>
+
+            
   
             <a href="#" @click.prevent="goToLogin" class="link-back">Volver</a>
           </div>
@@ -31,6 +33,10 @@
   const goToLogin = () => {
     router.push('/login'); // Regresa a la vista de login
   };
+
+  const handleRegister = () => {
+  router.push('/success');
+};
   </script>
   
   <style scoped>

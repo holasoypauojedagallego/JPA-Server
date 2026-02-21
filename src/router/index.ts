@@ -16,6 +16,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/RegistroPage.vue')
   },
   {
+    path: '/success',
+    component: () => import('@/views/CuentaCreadaPage.vue')
+  },
+  {
+    path: '/recover',
+    component: () => import('@/views/RecuperarContraseñaPage.vue')
+  },
+  {
     path: '/home/',
     component: TabsPage,
     children: [

@@ -18,7 +18,7 @@
         </div>
 
         <div class="footer-container">
-          <a href="#" class="link-forgot">Recuperar contraseña...</a>
+        <a href="#" @click.prevent="goToRecover" class="link-forgot">Recuperar contraseña...</a>
         </div>
       </div>
     </ion-content>
@@ -33,6 +33,10 @@ const router = useRouter();
 
 const goToRegister = () => {
   router.push('/register'); // Asegúrate de que esta ruta coincida con tu router
+};
+
+const goToRecover = () => {
+  router.push('/recover');
 };
 </script>
 
