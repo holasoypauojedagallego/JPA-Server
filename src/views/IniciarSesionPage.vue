@@ -18,9 +18,8 @@
             <a @click="goToRegister" class="link-register">Registrarse</a>
           </div>
 
-          <div class="footer-container">
-            <a class="link-forgot">Recuperar contraseña...</a>
-          </div>
+        <div class="footer-container">
+        <a href="#" @click.prevent="goToRecover" class="link-forgot">Recuperar contraseña...</a>
         </div>
       </div>
     </ion-content>
@@ -41,6 +40,10 @@ const goToHome = () => {
   router.push('/home');
 }
 
+
+const goToRecover = () => {
+  router.push('/recover');
+};
 </script>
 
 <style scoped>

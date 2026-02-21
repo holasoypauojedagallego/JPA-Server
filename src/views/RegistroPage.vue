@@ -11,10 +11,10 @@
             <ion-input class="glass-input" type="password" placeholder="Ingrese su contraseña..."></ion-input>
             <ion-input class="glass-input" type="password" placeholder="Confirme su contraseña..."></ion-input>
   
-            <ion-button>
-              <span>Registrarse</span>
+            <ion-button class="red-button" @click="handleRegister">
+              <span class="underline-text">Registrarse</span>
             </ion-button>
-  
+
             <a @click="goToLogin" class="link-back">Volver</a>
           </div>
         </div>
@@ -28,10 +28,14 @@ import { useRouter } from 'vue-router';
   
 const router = useRouter();
   
-const goToLogin = () => {
-  router.push('/login'); // Regresa a la vista de login
+  const goToLogin = () => {
+    router.push('/login'); // Regresa a la vista de login
+  };
+
+  const handleRegister = () => {
+  router.push('/success');
 };
-</script>
+  </script>
   
 <style scoped>
 
