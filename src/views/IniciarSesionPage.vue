@@ -7,16 +7,17 @@
         <div class="login-wrapper">
           <h1 class="login-title">Iniciar Sesión</h1>
 
-          <div class="form-container">
-            <ion-input class="glass-input" type="text" id="text" placeholder="Ingrese su nombre de usuario..."></ion-input>
-            <ion-input class="glass-input" type="password" placeholder="Ingrese su contraseña..."></ion-input>
+          <form class="form-container">
+            <ion-input class="glass-input" type="text" id="textLogin" required placeholder="Ingrese su nombre de usuario..."></ion-input>
+            <ion-input class="glass-input" type="password" id="passLogin" name="a" placeholder="Ingrese su contraseña..."></ion-input>
 
-            <ion-button class="primary">
+            <ion-button type="submit">
               <span @click="goToHome">Iniciar sesión</span>
             </ion-button>
+          </form>
 
             <a @click="goToRegister" class="link-register">Registrarse</a>
-          </div>
+          
 
           <div class="footer-container">
             <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
@@ -38,9 +39,8 @@ const goToRegister = () => {
 };
 
 const goToHome = () => {
-  router.push('/home');
+    router.push('/home');
 }
-
 
 const goToRecover = () => {
   router.push('/recover');
@@ -58,7 +58,7 @@ const goToRecover = () => {
 .login-div {
   justify-self: center;
   width: 90%;
-  height: 67%;
+  height: 60%;
 }
 
 .vignette-overlay {
@@ -127,7 +127,8 @@ const goToRecover = () => {
 .link-register {
   color: #e1e1e1;
   font-size: 15px;
-  margin-top: 5px;
+  margin-top: 15px;
+  padding-top: 5px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   transition: 0.2s;
 }
