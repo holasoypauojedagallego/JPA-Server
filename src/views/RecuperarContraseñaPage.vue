@@ -33,7 +33,7 @@
           <ion-input class="glass-input" type="password" placeholder="Ingrese su nueva contraseña..."></ion-input>
           <ion-input class="glass-input" type="password" placeholder="Ingrese de nuevo su nueva contraseña..."></ion-input>
           
-          <ion-button class="red-button" @click="step = 4">
+          <ion-button @click="step = 4">
             Cambiar contraseña
           </ion-button>
           
@@ -94,14 +94,6 @@ const goToLogin = () => {
     gap: 15px; 
     width: 100%; 
     max-width: 360px; 
-}
-
-.glass-input { 
-    --background: rgba(30, 30, 30, 0.85); 
-    --color: #fff; 
-    --border-radius: 25px; 
-    text-align: center; 
-    border: 1px solid rgba(255,255,255,0.1); 
 }
 
 .red-button { 

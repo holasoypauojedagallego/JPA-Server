@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-button>
-        <span class="primary" @click="goToLogin">Volver a Iniciar Sesion</span>
+        <span class="primary" @click.prevent="goToLogin">Volver a Iniciar Sesion</span>
       </ion-button>
 
       <ExploreContainer name="Profile page" />
@@ -31,3 +31,10 @@ const goToLogin = () => {
   router.push("/login");
 }
 </script>
+
+<style scoped>
+template {
+  justify-items: center;
+}
+</style>
+

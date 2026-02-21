@@ -6,17 +6,17 @@
         <div class="login-wrapper">
           <h1 class="login-title">Crear Cuenta</h1>
   
-          <div class="form-container">
-            <ion-input class="glass-input" type="text" placeholder="Ingrese su nombre de usuario..."></ion-input>
-            <ion-input class="glass-input" type="password" placeholder="Ingrese su contraseña..."></ion-input>
-            <ion-input class="glass-input" type="password" placeholder="Confirme su contraseña..."></ion-input>
+          <form class="form-container" @submit.prevent="handleRegister">
+            <ion-input class="glass-input" type="text" required placeholder="Ingrese su nombre de usuario..."></ion-input>
+            <ion-input class="glass-input" type="password" required placeholder="Ingrese su contraseña..."></ion-input>
+            <ion-input class="glass-input" type="password" required placeholder="Confirme su contraseña..."></ion-input>
   
-            <ion-button class="red-button" @click="handleRegister">
-              <span class="underline-text">Registrarse</span>
+            <ion-button type="submit">
+              <span>Registrarse</span>
             </ion-button>
 
             <a @click="goToLogin" class="link-back">Volver</a>
-          </div>
+          </form>
         </div>
       </ion-content>
     </ion-page>
@@ -40,7 +40,7 @@ const router = useRouter();
 <style scoped>
 
   .register-bg {
-    --background: url('../../public/Fondo-3.png') no-repeat center center / cover;
+    --background: url('/Fondo-3.png') no-repeat center center / cover;
   }
   
   .vignette-overlay {
@@ -78,25 +78,10 @@ const router = useRouter();
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 90%;
     max-width: 340px;
     gap: 12px;
   }
-  
-  .glass-input {
-    --background: rgba(45, 45, 45, 0.93);
-    --color: #a0a0a0;
-    --placeholder-color: #777;
-    --placeholder-font-style: italic;
-    --placeholder-opacity: 0.75;
-    --padding-start: 15px;
-    --padding-end: 15px;
-    --border-radius: 25px;
-    font-size: 14px;
-    text-align: center;
-    min-height: 40px;
-  }
-  
   
   .underline-text {
     text-decoration: underline;

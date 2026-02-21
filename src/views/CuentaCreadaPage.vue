@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <ion-button class="red-button" @click="goToNext">
+          <ion-button @click="goToNext">
             Continuar
           </ion-button>
         </div>
@@ -43,12 +43,10 @@ const goToNext = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300;1,400;1,600&display=swap');
 
 .success-bg {
   /* Fondo de piloto de carreras de Unsplash */
   --background: url('../../public/fondopc\ 1.png') no-repeat center center / cover;
-  font-family: 'Exo 2', sans-serif;
 }
 
 .vignette-overlay {
@@ -63,11 +61,11 @@ const goToNext = () => {
 .success-wrapper {
   position: relative;
   z-index: 2;
-  height: 100%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: flex-end; /* Alinea a la derecha */
-  padding-right: 15%; /* Margen derecho */
+  padding-right: 12vw; /* Margen derecho */
 }
 
 /* El panel en sí alinea sus textos a la izquierda */

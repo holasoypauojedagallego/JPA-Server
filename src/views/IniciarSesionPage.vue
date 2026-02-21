@@ -7,12 +7,12 @@
         <div class="login-wrapper">
           <h1 class="login-title">Iniciar Sesión</h1>
 
-          <form class="form-container">
-            <ion-input class="glass-input" type="text" id="textLogin" required placeholder="Ingrese su nombre de usuario..."></ion-input>
-            <ion-input class="glass-input" type="password" id="passLogin" name="a" placeholder="Ingrese su contraseña..."></ion-input>
+          <form class="form-container" @submit.prevent="goToHome">
+            <ion-input class="glass-input" type="text" id="textLogin" name="text" required placeholder="Ingrese su nombre de usuario..."></ion-input>
+            <ion-input class="glass-input" type="password" id="passLogin" name="pass" required placeholder="Ingrese su contraseña..."></ion-input>
 
-            <ion-button type="submit">
-              <span @click="goToHome">Iniciar sesión</span>
+            <ion-button type="submit" class="border">
+              <span>Iniciar sesión</span>
             </ion-button>
           </form>
 
@@ -51,7 +51,7 @@ const goToRecover = () => {
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,300;1,400&display=swap');
 
 .login-bg {
-  --background: url('../../public/Fondo-2.png') no-repeat center center / cover;
+  --background: url('/Fondo-2.png') no-repeat center center / cover;
   font-family: 'Exo 2', sans-serif;
 }
 
@@ -99,20 +99,6 @@ const goToRecover = () => {
   gap: 20px;
 }
 
-.glass-input {
-  --background: rgba(45, 45, 45, 0.93);
-  --color: #a0a0a0;
-  --placeholder-color: #777;
-  --placeholder-font-style: italic;
-  --placeholder-opacity: 0.75;
-  --padding-start: 15px;
-  --padding-end: 15px;
-  --border-radius: 25px;
-  font-size: 14px;
-  text-align: center;
-  min-height: 40px;
-}
-
 .underline-text {
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -131,6 +117,10 @@ const goToRecover = () => {
   padding-top: 5px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   transition: 0.2s;
+}
+
+.border {
+  
 }
 
 .link-register:hover { text-decoration: underline; color: #fff; transform: scale(1.02);}

@@ -33,19 +33,19 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'servers',
-        component: () => import('@/views/Tab1Page.vue')
+        component: () => import('@/views/TabServersPage.vue')
       },
       {
         path: 'createServer',
-        component: () => import('@/views/Tab2Page.vue')
+        component: () => import('@/views/TabCreatePage.vue')
       },
       {
         path: 'messages',
-        component: () => import('@/views/Tab3Page.vue')
+        component: () => import('@/views/TabMessagesPage.vue')
       },
       {
         path: 'profile',
-        component: () => import('@/views/Tab4Page.vue')
+        component: () => import('@/views/TabProfilePage.vue')
       }
     ]
   }
