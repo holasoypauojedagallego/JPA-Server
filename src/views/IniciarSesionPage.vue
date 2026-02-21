@@ -18,8 +18,9 @@
             <a @click="goToRegister" class="link-register">Registrarse</a>
           </div>
 
-        <div class="footer-container">
-        <a href="#" @click.prevent="goToRecover" class="link-forgot">Recuperar contraseña...</a>
+          <div class="footer-container">
+            <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
+          </div>
         </div>
       </div>
     </ion-content>
