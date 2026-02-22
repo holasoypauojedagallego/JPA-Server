@@ -43,15 +43,6 @@ const router = useRouter();
     --background: url('/Fondo-3.png') no-repeat center center / cover;
   }
   
-  .vignette-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    /* Viñeta más fuerte para pantallas oscuras */
-    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.95);
-    background: rgba(0,0,0,0.3); /* Capa oscura extra */
-    pointer-events: none;
-    z-index: 1;
-  }
   
   .login-wrapper {
     position: relative;
@@ -91,16 +82,18 @@ const router = useRouter();
   
   .link-back {
     color: #999;
-    font-size: 14px;
-    text-decoration: underline;
+    font-size: 16px;
+    text-decoration: none;
     text-underline-offset: 3px;
-    margin-top: 15px;
+    margin-top: 25px;
     font-style: italic;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    transition: 0.2s;
   }
   
   .link-back:hover {
     color: #fff;
+    text-decoration: underline; 
   }
   </style>
   

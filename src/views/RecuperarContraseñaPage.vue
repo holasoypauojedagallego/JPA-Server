@@ -107,8 +107,14 @@ const goToLogin = () => {
 .link-back { 
     color: #999; 
     margin-top: 20px;
-    text-decoration: underline; 
-    font-style: italic; 
+    text-decoration: none; 
+    font-style: italic;
+    transition: 0.2s; 
+}
+
+.link-back:hover {
+  color: #fff;
+  text-decoration: underline; 
 }
 
 .custom-modal-overlay { 
