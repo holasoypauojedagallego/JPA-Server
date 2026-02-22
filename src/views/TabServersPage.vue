@@ -1,124 +1,138 @@
 <template>
   <ion-page>
-    <header class="top-nav">
-      <div class="nav-item active">
-        <ion-icon :icon="searchOutline"></ion-icon>
-        <span>Servidores</span>
+    <header class="flex justify-around items-center bg-[#1a1a1a] py-3 border-b border-[#333] z-10">
+      <div class="flex flex-col items-center text-[#fff] border-b-2 border-[#c31d1d] pb-1">
+        <ion-icon :icon="searchOutline" class="text-2xl mb-1"></ion-icon>
+        <span class="text-[11px]">Servidores</span>
       </div>
-      <div class="nav-item">
-        <ion-icon :icon="gridOutline"></ion-icon>
-        <span>Crear Servidor</span>
+      <div class="flex flex-col items-center text-[#888]">
+        <ion-icon :icon="gridOutline" class="text-2xl mb-1"></ion-icon>
+        <span class="text-[11px]">Crear Servidor</span>
       </div>
-      <div class="nav-item">
-        <ion-icon :icon="chatbubbleOutline"></ion-icon>
-        <span>Mensajes</span>
+      <div class="flex flex-col items-center text-[#888]">
+        <ion-icon :icon="chatbubbleOutline" class="text-2xl mb-1"></ion-icon>
+        <span class="text-[11px]">Mensajes</span>
       </div>
-      <div class="nav-item">
-        <ion-icon :icon="personOutline"></ion-icon>
-        <span>Perfil</span>
+      <div class="flex flex-col items-center text-[#888]">
+        <ion-icon :icon="personOutline" class="text-2xl mb-1"></ion-icon>
+        <span class="text-[11px]">Perfil</span>
       </div>
     </header>
 
     <ion-content :fullscreen="true" class="main-bg">
-      <div class="content-wrapper">
-        <h1 class="main-title">SERVIDORES</h1>
+      <div class="flex flex-col items-center p-5">
+        <h1 class="text-white text-3xl tracking-[2px] font-light my-4 italic">SERVIDORES</h1>
 
-        <div class="search-container">
-          <div class="search-bar">
-            <input type="text" placeholder="Escribir Mensaje..." />
-            <ion-icon :icon="searchOutline" class="search-icon-inner"></ion-icon>
+        <div class="flex items-center gap-4 w-full max-w-[600px] mb-6">
+          <div class="flex-1 flex items-center bg-[#2d2d2d]/90 rounded-full px-5 py-2 border border-[#444]">
+            <input 
+              type="text" 
+              placeholder="Escribir Mensaje..." 
+              class="bg-transparent border-none text-[#ccc] italic w-full outline-none text-sm"
+            />
+            <ion-icon :icon="searchOutline" class="text-[#ccc] text-xl"></ion-icon>
           </div>
           <ion-icon 
             :icon="pricetagOutline" 
-            class="tag-icon" 
+            class="text-[#5d6d7e] text-3xl cursor-pointer rotate-45 hover:text-white transition-colors"
             @click="showFilters = true"
           ></ion-icon>
         </div>
 
-        <div class="servers-list">
-          <div v-for="server in servers" :key="server.id" class="server-card">
-            <div class="server-info">
-              <img :src="server.image" class="server-thumb" />
-              <div class="text-details">
-                <h3>{{ server.name }}</h3>
-                <p><em>{{ server.track }}</em></p>
-                <div class="status-row">
-                  <div class="signal-bars">
-                    <div class="bar" :class="{ 'fill': server.signal >= 1 }"></div>
-                    <div class="bar" :class="{ 'fill': server.signal >= 2 }"></div>
-                    <div class="bar" :class="{ 'fill': server.signal >= 3 }"></div>
-                    <div class="bar" :class="{ 'fill': server.signal >= 4 }"></div>
+        <div class="flex flex-col gap-4 w-full max-w-[700px]">
+          <div v-for="server in servers" :key="server.id" class="bg-[#8b0000] rounded-[18px] p-4 flex justify-between items-center shadow-lg transition-transform active:scale-[0.98]">
+            <div class="flex items-center gap-4">
+              <img :src="server.image" class="w-14 h-14 rounded-full border-2 border-white/10" />
+              <div class="flex flex-col">
+                <h3 class="text-white text-lg font-bold leading-tight">{{ server.name }}</h3>
+                <p class="text-white/80 text-sm italic">{{ server.track }}</p>
+                <div class="flex items-center gap-3 mt-1">
+                  <div class="flex items-end gap-[3px] h-[15px]">
+                    <div v-for="i in 4" :key="i" 
+                         class="w-1 rounded-sm transition-colors" 
+                         :class="[server.signal >= i ? 'bg-[#39ff14]' : 'bg-white/20', i === 1 ? 'h-[30%]' : i === 2 ? 'h-[50%]' : i === 3 ? 'h-[75%]' : 'h-full']">
+                    </div>
                   </div>
-                  <div class="stars">
-                    <ion-icon v-for="i in 5" :key="i" :icon="star" :class="{ 'gold': i <= server.stars }"></ion-icon>
+                  <div class="flex">
+                    <ion-icon v-for="i in 5" :key="i" :icon="star" 
+                              class="text-[14px] mr-[1px]" 
+                              :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'"></ion-icon>
                   </div>
-                  <span class="users-count">{{ server.users }}</span>
+                  <span class="text-white text-xs font-semibold">{{ server.users }}</span>
                 </div>
               </div>
             </div>
-            
-            <div class="fav-container" @click="toggleFavorite(server)">
+            <div class="cursor-pointer p-2" @click="toggleFavorite(server)">
               <ion-icon 
                 :icon="server.isFavorite ? bookmark : bookmarkOutline" 
-                :class="{ 'fav-active': server.isFavorite }"
+                class="text-2xl transition-all"
+                :class="server.isFavorite ? 'text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]' : 'text-white/40'"
               ></ion-icon>
             </div>
           </div>
         </div>
       </div>
 
-      <div v-if="showFilters" class="filter-overlay">
-        <div class="filter-panel">
-          <h2 class="filter-section-title">Número Máximo de Jugadores</h2>
-          <div class="range-box">
-            <span>0</span>
-            <div class="custom-range">
-              <div class="range-fill"></div>
-              <div class="range-knob"></div>
+      <div v-if="showFilters" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="w-full max-w-[320px] rounded-[24px] border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200">
+          
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Número Máximo de Jugadores</h2>
+          
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-xs text-[#555]">0</span>
+            <div class="relative flex-1 flex items-center">
+              <input 
+                type="range" 
+                min="0" 
+                max="16" 
+                v-model="maxPlayers"
+                class="custom-slider" 
+                :style="sliderStyle"
+              >
             </div>
-            <span>16</span>
+            <span class="text-xs text-[#555]">16</span>
           </div>
 
-          <h2 class="filter-section-title">Región (Scrollable)</h2>
-          <div class="region-scroll">
-            <div class="region-chip selected">
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Región (Scrollable)</h2>
+          <div class="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
+            <div class="flex-shrink-0 flex items-center gap-1 bg-[#e0e0e0] text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-md">
               EU <ion-icon :icon="checkbox"></ion-icon>
             </div>
-            <div class="region-chip">
-              NA <ion-icon :icon="bookmarkOutline"></ion-icon>
-            </div>
-            <div class="region-chip">
-              SA <ion-icon :icon="bookmarkOutline"></ion-icon>
-            </div>
-            <div class="region-chip">
-              AS <ion-icon :icon="bookmarkOutline"></ion-icon>
+            <div v-for="reg in ['NA', 'SA', 'AS']" :key="reg" 
+                 class="flex-shrink-0 flex items-center gap-1 bg-[#2a2a2a] text-[#888] px-3 py-1.5 rounded-lg text-xs border border-[#333]">
+              {{ reg }} <ion-icon :icon="bookmarkOutline"></ion-icon>
             </div>
           </div>
 
-          <div class="options-list">
-            <div class="option-row">
+          <div class="flex flex-col gap-4 my-2">
+            <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Solo Favoritos</span>
-              <ion-icon :icon="bookmarkOutline" class="check-icon"></ion-icon>
+              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
             </div>
-            <div class="option-row">
+            <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Circuitos DLC</span>
-              <ion-icon :icon="checkbox" class="check-icon active-red"></ion-icon>
+              <ion-icon :icon="checkbox" class="text-2xl text-[#c31d1d]"></ion-icon>
             </div>
-            <div class="option-row">
+            <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Con contraseña</span>
-              <ion-icon :icon="bookmarkOutline" class="check-icon"></ion-icon>
+              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
             </div>
-            <div class="option-row">
+            <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Solo Amigos</span>
-              <ion-icon :icon="bookmarkOutline" class="check-icon"></ion-icon>
+              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
             </div>
-            <div class="option-row important">
+            <div class="flex justify-between items-center font-bold text-white text-base pt-2 border-t border-white/5">
               <span>Competitivo</span>
-              <ion-icon :icon="checkbox" class="check-icon active-red"></ion-icon>
+              <ion-icon :icon="checkbox" class="text-2xl text-[#c31d1d]"></ion-icon>
             </div>
           </div>
 
-          <button class="btn-save" @click="showFilters = false">GUARDAR</button>
+          <button 
+            @click="showFilters = false"
+            class="mt-6 w-full bg-[#c31d1d] py-3 rounded-xl font-bold text-white shadow-[0_4px_0_#8b0000] active:translate-y-1 active:shadow-none transition-all uppercase tracking-widest text-sm"
+          >
+            GUARDAR
+          </button>
         </div>
       </div>
     </ion-content>
@@ -126,7 +140,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { IonPage, IonContent, IonIcon } from '@ionic/vue';
 import { 
   searchOutline, gridOutline, chatbubbleOutline, personOutline, 
@@ -135,6 +149,17 @@ import {
 
 const showFilters = ref(false);
 
+// Nueva variable para el slider
+const maxPlayers = ref(16);
+
+// Computed property para el fondo bicolor del slider
+const sliderStyle = computed(() => {
+  const percentage = (maxPlayers.value / 16) * 100;
+  return {
+    background: `linear-gradient(to right, #c31d1d ${percentage}%, #ffffff ${percentage}%)`
+  };
+});
+
 const servers = ref([
   { id: 1, name: 'Jorge', track: 'Circuito de Nürburgring', signal: 4, stars: 5, users: '15/16', image: 'https://placehold.co/100/333/fff?text=J', isFavorite: true },
   { id: 2, name: 'Joe Biden', track: 'Circuito de Barcelona', signal: 3, stars: 4, users: '15/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
@@ -142,10 +167,10 @@ const servers = ref([
   { id: 4, name: 'Adrian Luque Diaz', track: 'Circuito de Suzuka', signal: 2, stars: 1, users: '12/16', image: 'https://placehold.co/100/333/fff?text=A', isFavorite: false },
   { id: 5, name: 'Venezuela Mejores Pilotos', track: 'Circuito de Barcelona', signal: 4, stars: 2, users: '7/16', image: 'https://placehold.co/100/333/fff?text=V', isFavorite: false },
   { id: 6, name: 'Brasil Sim Racing', track: 'Circuito de Spa-Francorchamps', signal: 4, stars: 3, users: '4/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
-  { id: 7, name: 'Servidor de Assetto Corsa', track: 'Circuito de Nürburgring', signal: 3, stars: 0, users: '1/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
-  { id: 8, name: '基督雷伊 基督雷伊', track: 'Circuito de Suzuka', signal: 1, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
-  { id: 9, name: '雷伊基督伊 ', track: 'Circuito de Nürburgring', signal: 2, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
-  { id: 10, name: '督基督伊伊基督伊督雷伊督雷伊', track: 'Circuito de Spa-Francorchamps', signal: 1, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=B', isFavorite: false },
+  { id: 7, name: 'Servidor de Assetto Corsa', track: 'Circuito de Nürburgring', signal: 3, stars: 0, users: '1/16', image: 'https://placehold.co/100/333/fff?text=S', isFavorite: false },
+  { id: 8, name: '基督雷伊 基督雷伊', track: 'Circuito de Suzuka', signal: 1, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=K', isFavorite: false },
+  { id: 9, name: '雷伊基督伊 ', track: 'Circuito de Nürburgring', signal: 2, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=R', isFavorite: false },
+  { id: 10, name: '督基督伊伊基督伊督雷伊督雷伊', track: 'Circuito de Spa-Francorchamps', signal: 1, stars: 0, users: '0/16', image: 'https://placehold.co/100/333/fff?text=D', isFavorite: false },
 ]);
 
 const toggleFavorite = (server: any) => {
@@ -154,164 +179,52 @@ const toggleFavorite = (server: any) => {
 </script>
 
 <style scoped>
-/* --- TUS ESTILOS ORIGINALES --- */
-.main-bg { --background: #121212; font-family: 'Exo 2', sans-serif; }
-.top-nav { background: #1a1a1a; display: flex; justify-content: space-around; padding: 12px 0; border-bottom: 1px solid #333; }
-.nav-item { display: flex; flex-direction: column; align-items: center; color: #888; font-size: 11px; }
-.nav-item ion-icon { font-size: 22px; margin-bottom: 4px; }
-.nav-item.active { color: #fff; border-bottom: 2px solid #c31d1d; padding-bottom: 4px; }
-.content-wrapper { padding: 20px; display: flex; flex-direction: column; align-items: center; }
-.main-title { color: #fff; font-size: 32px; letter-spacing: 2px; font-weight: 300; margin: 10px 0 30px; }
-.search-container { display: flex; align-items: center; gap: 15px; width: 100%; max-width: 600px; margin-bottom: 25px; }
-.search-bar { background: rgba(45, 45, 45, 0.9); border-radius: 25px; display: flex; align-items: center; padding: 8px 20px; flex: 1; border: 1px solid #444; }
-.search-bar input { background: transparent; border: none; color: #ccc; font-style: italic; width: 100%; outline: none; }
-.tag-icon { color: #5d6d7e; font-size: 28px; transform: rotate(45deg); cursor: pointer; }
-
-.servers-list { width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 15px; }
-.server-card { background: #8b0000; border-radius: 18px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
-.server-info { display: flex; align-items: center; gap: 18px; }
-.server-thumb { width: 55px; height: 55px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); }
-.text-details h3 { color: #fff; margin: 0; font-size: 19px; font-weight: bold; }
-.text-details p { color: rgba(255,255,255,0.8); margin: 3px 0; font-size: 14px; }
-.status-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
-.signal-bars { display: flex; align-items: flex-end; gap: 3px; height: 15px; }
-.bar { width: 4px; background: rgba(255,255,255,0.2); border-radius: 1px; }
-.bar:nth-child(1) { height: 30%; }
-.bar:nth-child(2) { height: 50%; }
-.bar:nth-child(3) { height: 75%; }
-.bar:nth-child(4) { height: 100%; }
-.bar.fill { background: #39ff14; }
-.stars ion-icon { font-size: 14px; color: rgba(0,0,0,0.3); margin-right: 1px; }
-.stars .gold { color: #ffd700; }
-.users-count { color: #fff; font-size: 13px; font-weight: 600; }
-.fav-container ion-icon { font-size: 26px; color: rgba(255,255,255,0.4); cursor: pointer; transition: transform 0.2s ease; }
-.fav-container .fav-active { color: #fff; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
-
-/* --- ESTILOS DEL PANEL DE FILTROS --- */
-.filter-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(2px);
+.main-bg {
+  --background: #121212;
+  font-family: 'Exo 2', sans-serif;
 }
 
-.filter-panel {
-  background: #1c1c1c;
-  width: 320px;
-  border: 1px solid #c31d1d;
-  border-radius: 24px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+/* Ocultar scrollbar en el contenedor de regiones */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.filter-section-title {
-  color: #7a7a7a;
-  font-size: 13px;
-  text-align: center;
-  margin: 15px 0 10px;
-  font-weight: normal;
+/* --- NUEVOS ESTILOS PARA EL SLIDER BICOLOR --- */
+.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px; /* Grosor de la línea */
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  /* Transición suave al arrastrar */
+  transition: background 0.1s ease;
 }
 
-.range-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: #555;
-  font-size: 12px;
-}
-
-.custom-range {
-  flex: 1;
-  height: 3px;
-  background: #c31d1d;
-  position: relative;
-}
-
-.range-knob {
-  position: absolute;
-  right: 0;
-  top: -4px;
-  width: 11px;
-  height: 11px;
-  background: #fff;
+/* Estilo para el input range (el círculo blanco) en Webkit (Chrome/Safari) */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: white;
   border-radius: 50%;
-}
-
-.region-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 5px;
-}
-
-.region-chip {
-  background: #2a2a2a;
-  color: #888;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border: 1px solid #333;
-}
-
-.region-chip.selected {
-  background: #e0e0e0;
-  color: #000;
-}
-
-.options-list {
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.option-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #ccc;
-  font-size: 14px;
-}
-
-.option-row.important span {
-  font-weight: bold;
-  font-size: 16px;
-  color: #fff;
-}
-
-.check-icon {
-  font-size: 22px;
-  color: #333;
-}
-
-.active-red {
-  color: #c31d1d;
-}
-
-.btn-save {
-  background: #c31d1d;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px;
-  font-weight: bold;
-  font-size: 14px;
-  margin-top: 10px;
-  box-shadow: 0 4px #8b0000;
+  box-shadow: 0 0 10px rgba(255,255,255,0.8);
   cursor: pointer;
 }
 
-.btn-save:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px #8b0000;
+/* Estilo para el input range en Firefox */
+.custom-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.8);
+  cursor: pointer;
 }
 </style>
