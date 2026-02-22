@@ -16,11 +16,11 @@
             </ion-button>
           </form>
 
-          <div class="link-register bg-[#333]/65 sm:bg-black/0 p-1 rounded-lg">
+          <div class="link-register p-1 rounded-lg">
             <a @click="goToRegister" class="link-register">Registrarse</a>
           </div>
           
-          <div class="footer-container bg-[#333]/65 sm:bg-black/0 p-1 rounded-lg">
+          <div class="footer-container rounded-lg">
             <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
           </div>
         </div>
@@ -51,21 +51,13 @@ const goToRecover = () => {
 <style scoped>
 
 .login-bg {
-  --background: url('/Fondo-2.png') no-repeat center center / cover;
+  --background: url('/Fondo-2.png') no-repeat center / cover;
 }
 
 .login-div {
   justify-self: center;
   width: 90%;
   height: 60%;
-}
-
-.vignette-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .login-wrapper {
@@ -111,7 +103,7 @@ const goToRecover = () => {
 
 .link-register {
   color: #e1e1e1;
-  font-size: 15px;
+  font-size: 16px;
   margin-top: 33px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   transition: 0.2s;
@@ -124,7 +116,7 @@ const goToRecover = () => {
 
 .link-forgot {
   color: #d1d1d1;
-  font-size: 14px;
+  font-size: 15px;
   transition: 0.2s;
 }
 

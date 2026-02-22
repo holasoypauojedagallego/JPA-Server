@@ -1,10 +1,10 @@
 <template>
   <ion-page>
     <ion-content class="success-bg" :scrollY="false">
-      <div class="vignette-overlay"></div>
+      <div class="vignette-overlay lg:"></div>
 
       <div class="success-wrapper md:ml-[55vw] sm:ml-[45vw]">
-        <div class="info-panel md:bg-black/0 bg-[#333333]/75 rounded-md p-3 md:m-0 mt-50">
+        <div class="info-panel md:bg-black/0 bg-[#333333]/85 rounded-lg p-3 md:m-0 mt-50">
           <h1 class="main-title">Cuenta Creada!</h1>
 
           <div class="user-data">
@@ -46,24 +46,19 @@ const goToNext = () => {
 }
 
 .vignette-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
-  pointer-events: none;
-  z-index: 1;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.16);
 }
 
-/* Envolvemos el contenido para tirarlo hacia la mitad derecha de la pantalla */
 .success-wrapper {
   position: relative;
   z-index: 2;
   height: 80%;
   display: flex;
   align-items: center;
-  justify-content: center; /* Alinea a la derecha */
+  justify-content: center; 
 }
 
-/* El panel en sí alinea sus textos a la izquierda */
 .info-panel {
   display: flex;
   flex-direction: column;
@@ -110,21 +105,4 @@ const goToNext = () => {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* Mismo botón rojo de las otras pantallas */
-.red-button {
-  --background: #c31d1d;
-  --background-hover: #a11717;
-  --border-color: #520606;
-  --border-style: solid;
-  --border-width: 2px;
-  --border-radius: 6px;
-  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  height: 42px;
-  width: 180px;
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
-  font-style: italic;
-  letter-spacing: 0.5px;
-}
 </style>
