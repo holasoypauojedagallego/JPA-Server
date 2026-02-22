@@ -5,7 +5,7 @@
         <div class="vignette-overlay"></div>
 
         <div class="login-wrapper">
-          <h1 class="login-title">Iniciar Sesión</h1>
+          <h1 class="login-title pt-30">Iniciar Sesión</h1>
 
           <form class="form-container" @submit.prevent="goToHome">
             <ion-input class="glass-input" type="text" id="textLogin" name="text" required placeholder="Ingrese su nombre de usuario..."></ion-input>
@@ -16,11 +16,11 @@
             </ion-button>
           </form>
 
-          <div class="link-register p-1 rounded-lg">
+          <div class="link-register p-1 mt-20 rounded-lg bg-black/6 md:bg-black/3">
             <a @click="goToRegister" class="link-register">Registrarse</a>
           </div>
           
-          <div class="footer-container rounded-lg">
+          <div class="footer-container p-1 rounded-lg bg-[#aaa]/6 md:bg-black/3">
             <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
           </div>
         </div>
@@ -57,7 +57,7 @@ const goToRecover = () => {
 .login-div {
   justify-self: center;
   width: 90%;
-  height: 60%;
+  height: 100%;
 }
 
 .login-wrapper {
@@ -67,8 +67,7 @@ const goToRecover = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-top: 15vh;
+  justify-content: start;
 }
 
 .login-title {
@@ -104,15 +103,14 @@ const goToRecover = () => {
 .link-register {
   color: #e1e1e1;
   font-size: 16px;
-  margin-top: 33px;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
   transition: 0.2s;
   text-decoration: none;
 }
 
-.link-register:hover { text-decoration: underline; color: #eee; transform: scale(1.02);}
+.link-register:hover { text-decoration: underline; color: #eee; transform: scale(0.95);}
 
-.footer-container { margin-top: 80px; }
+.footer-container { margin-top: 50px; }
 
 .link-forgot {
   color: #d1d1d1;

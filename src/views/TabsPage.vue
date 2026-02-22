@@ -14,7 +14,7 @@
 
         <ion-tab-button tab="tabMessages" href="/home/messages">
           <ion-icon aria-hidden="true" :icon="chatbubblesOutline" />
-  
+          <ion-badge color="danger">1</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button tab="tabProfile" href="/home/profile">
@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
+import { IonTabBar, IonTabButton, IonTabs, IonIcon, IonPage, IonRouterOutlet, IonBadge } from '@ionic/vue';
 import { chatbubblesOutline, constructOutline, personCircleOutline, searchOutline } from 'ionicons/icons';
+
 </script>

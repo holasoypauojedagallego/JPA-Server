@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <ion-button @click="goToNext">
+          <ion-button @click="goToNext" class="md:self-auto self-center">
             Continuar
           </ion-button>
         </div>
