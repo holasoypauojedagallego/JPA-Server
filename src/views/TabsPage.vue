@@ -18,7 +18,11 @@
         </ion-tab-button>
 
         <ion-tab-button tab="tabProfile" href="/home/profile">
-          <img class="w-9 h-9 rounded-full" src="/Daniel.png" alt="Rounded avatar">
+          <div class="w-10 h-10 rounded-full profile-container justify-items-center content-center grid">
+            <div class="w-9 h-9 rounded-full bg-[#363636] justify-items-center content-center grid">
+              <img class="w-8 h-8 rounded-full" src="/Daniel.png" alt="Rounded avatar">
+            </div>
+          </div>
           <ion-badge color="warning"></ion-badge>
         </ion-tab-button>
 
@@ -29,6 +33,22 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonIcon, IonPage, IonRouterOutlet, IonBadge } from '@ionic/vue';
-import { chatbubblesOutline, constructOutline, personCircleOutline, searchOutline } from 'ionicons/icons';
+import { chatbubblesOutline, constructOutline, searchOutline } from 'ionicons/icons';
 
 </script>
+<style>
+
+ion-tab-button .profile-container {
+  transition: 0.2s;
+}
+
+ion-tab-button.tab-selected .profile-container {
+  background-color: #A80F12; 
+}
+
+ion-tab-button:hover .profile-container {
+  background-color: #A80F12;
+  opacity: 0.8;
+}
+
+</style>
