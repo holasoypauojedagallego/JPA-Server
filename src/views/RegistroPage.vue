@@ -1,21 +1,22 @@
 <template>
     <ion-page>
-      <ion-content class="register-bg" :scrollY="false">
+      <ion-content class="register-bg">
         <div class="vignette-overlay"></div>
   
         <div class="login-wrapper">
-          <h1 class="login-title">Crear Cuenta</h1>
+          <h1 class="login-title py-[22vw] sm:py-[15vw] md:py-25 ">Crear Cuenta</h1>
   
           <form class="form-container" @submit.prevent="handleRegister">
             <ion-input class="glass-input" type="text" required placeholder="Ingrese su nombre de usuario..."></ion-input>
             <ion-input class="glass-input" type="password" required placeholder="Ingrese su contraseña..."></ion-input>
             <ion-input class="glass-input" type="password" required placeholder="Confirme su contraseña..."></ion-input>
   
-            <ion-button type="submit">
+            <ion-button type="submit" class="mt-10">
               <span>Registrarse</span>
             </ion-button>
-
-            <a @click="goToLogin" class="link-back">Volver</a>
+            <div class="mt-5 p-1 rounded-lg bg-[#999]/6 md:bg-black/3">
+              <a @click="goToLogin" class="link-back">Volver</a>
+          </div>
           </form>
         </div>
       </ion-content>
@@ -47,17 +48,16 @@ const router = useRouter();
   .login-wrapper {
     position: relative;
     z-index: 2;
-    height: 100%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding-top: 5vh; /* Ligeramente más arriba por tener más inputs */
   }
   
   .login-title {
     color: #fff;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 300;
     font-style: italic;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);

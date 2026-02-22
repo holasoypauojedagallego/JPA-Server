@@ -43,7 +43,7 @@
 
       <div v-if="step === 4" class="custom-modal-overlay">
         <div class="custom-modal">
-          <p class="modal-text">Se ha enviado un correo de<br>recuperación para:</p>
+          <p class="modal-text">Se ha cambiado la<br>contraseña para:</p>
           <p class="modal-name">Daniel Martinez Montserrat</p>
           
           <ion-button class="red-button modal-btn" @click="goToLogin">
@@ -76,16 +76,17 @@ const goToLogin = () => {
 .recover-bg {
   --background: url('https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?q=80&w=2000') no-repeat center center / cover;
 }
+
 .login-wrapper { 
     position: relative;
-     z-index: 2; 
-     height: 100%; 
-     display: flex; 
-     flex-direction: column; 
-     align-items: center; 
-     justify-content: center; 
-     width: 90%;
-     justify-self: center;
+    z-index: 2; 
+    min-height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    width: 90%;
+    margin: 0 auto;
 }
 
 .form-container {
@@ -107,7 +108,8 @@ const goToLogin = () => {
 .link-back { 
     color: #999; 
     margin-top: 20px;
-    text-decoration: none; 
+    text-decoration: none;
+    font-size: 16px; 
     font-style: italic;
     transition: 0.2s; 
 }

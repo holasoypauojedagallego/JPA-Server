@@ -18,7 +18,8 @@
         </ion-tab-button>
 
         <ion-tab-button tab="tabProfile" href="/home/profile">
-          <ion-icon aria-hidden="true" :icon="personCircleOutline" />
+          <img class="w-9 h-9 rounded-full" src="/Daniel.png" alt="Rounded avatar">
+          <ion-badge color="warning"></ion-badge>
         </ion-tab-button>
 
       </ion-tab-bar>

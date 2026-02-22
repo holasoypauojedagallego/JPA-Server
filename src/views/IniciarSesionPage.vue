@@ -5,7 +5,7 @@
         <div class="vignette-overlay"></div>
 
         <div class="login-wrapper">
-          <h1 class="login-title pt-30">Iniciar Sesión</h1>
+          <h1 class="login-title pt-35">Iniciar Sesión</h1>
 
           <form class="form-container" @submit.prevent="goToHome">
             <ion-input class="glass-input" type="text" id="textLogin" name="text" required placeholder="Ingrese su nombre de usuario..."></ion-input>
@@ -55,19 +55,18 @@ const goToRecover = () => {
 }
 
 .login-div {
-  justify-self: center;
-  width: 90%;
-  height: 100%;
+  min-height: 100%;
 }
 
 .login-wrapper {
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: start;
+  margin: 0 auto;
 }
 
 .login-title {
@@ -76,7 +75,7 @@ const goToRecover = () => {
   font-weight: 300;
   font-style: italic;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-  margin-bottom: 100px;
+  margin-bottom: 110px;
   letter-spacing: 1px;
 }
 

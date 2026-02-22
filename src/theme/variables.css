@@ -35,12 +35,12 @@ http://ionicframework.com/docs/theming/ */
 	--ion-color-success-shade: #215f90;
 	--ion-color-success-tint: #3b7bad;
 
-	--ion-color-warning: #D72323;
-	--ion-color-warning-rgb: 215,35,35;
+	--ion-color-warning: #006600;
+	--ion-color-warning-rgb: 0, 102, 0;
 	--ion-color-warning-contrast: #ffffff;
 	--ion-color-warning-contrast-rgb: 255,255,255;
-	--ion-color-warning-shade: #bd1f1f;
-	--ion-color-warning-tint: #db3939;
+	--ion-color-warning-shade: #005a00;
+	--ion-color-warning-tint: #1a751a;
 
 	--ion-color-danger: #D72323;
 	--ion-color-danger-rgb: 215,35,35;
@@ -73,9 +73,9 @@ http://ionicframework.com/docs/theming/ */
 }
 
 .glass-input {
-  --background: rgba(45, 45, 45, 0.93);
-  --color: #ddd;
-  --placeholder-color: #777;
+  --background: rgba(45, 45, 45, 0.95);
+  --color: #eee;
+  --placeholder-color: #888;
   --placeholder-font-style: italic;
   --placeholder-opacity: 0.75;
   --padding-start: 15px;
@@ -83,7 +83,7 @@ http://ionicframework.com/docs/theming/ */
   --border-radius: 25px;
   border: 2px solid #C5C5C5;
   border-radius: 25px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   min-height: 40px;
 }
@@ -101,6 +101,7 @@ ion-button {
   border: 2px solid #000;
   border-radius: 7px;
   text-transform: none;
-  --padding-start: 3.3vw;
-  --padding-end: 3.3vw;
+  font-size: 15px;
+  --padding-start: 3.5vw;
+  --padding-end: 3.5vw;
 }

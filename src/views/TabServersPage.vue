@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <header class="flex justify-around items-center bg-[#1a1a1a] py-3 border-b border-[#333] z-10">
-      <div class="flex flex-col items-center text-[#fff] border-b-2 border-[#c31d1d] pb-1">
+      <div class="flex flex-col items-center text-white border-b-2 border-[#c31d1d] pb-1">
         <ion-icon :icon="searchOutline" class="text-2xl mb-1"></ion-icon>
         <span class="text-[11px]">Servidores</span>
       </div>
@@ -23,7 +23,7 @@
       <div class="flex flex-col items-center p-5">
         <h1 class="text-white text-3xl tracking-[2px] font-light my-4 italic">SERVIDORES</h1>
 
-        <div class="flex items-center gap-4 w-full max-w-[600px] mb-6">
+        <div class="flex items-center gap-4 w-full max-w-150 mb-6">
           <div class="flex-1 flex items-center bg-[#2d2d2d]/90 rounded-full px-5 py-2 border border-[#444]">
             <input 
               type="text" 
@@ -39,7 +39,7 @@
           ></ion-icon>
         </div>
 
-        <div class="flex flex-col gap-4 w-full max-w-[700px]">
+        <div class="flex flex-col gap-4 w-full max-w-175">
           <div v-for="server in servers" :key="server.id" class="bg-[#8b0000] rounded-[18px] p-4 flex justify-between items-center shadow-lg transition-transform active:scale-[0.98]">
             <div class="flex items-center gap-4">
               <img :src="server.image" class="w-14 h-14 rounded-full border-2 border-white/10" />
@@ -47,16 +47,16 @@
                 <h3 class="text-white text-lg font-bold leading-tight">{{ server.name }}</h3>
                 <p class="text-white/80 text-sm italic">{{ server.track }}</p>
                 <div class="flex items-center gap-3 mt-1">
-                  <div class="flex items-end gap-[3px] h-[15px]">
+                  <div class="flex items-end gap-0.75 h-3.75">
                     <div v-for="i in 4" :key="i" 
                          class="w-1 rounded-sm transition-colors" 
                          :class="[server.signal >= i ? 'bg-[#39ff14]' : 'bg-white/20', i === 1 ? 'h-[30%]' : i === 2 ? 'h-[50%]' : i === 3 ? 'h-[75%]' : 'h-full']">
                     </div>
                   </div>
                   <div class="flex">
-                    <ion-icon v-for="i in 5" :key="i" :icon="star" 
-                              class="text-[14px] mr-[1px]" 
-                              :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'"></ion-icon>
+                    <div v-for="i in 5" :key="i" 
+                              class="text-[14px] mr-px" 
+                              :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'"></div>
                   </div>
                   <span class="text-white text-xs font-semibold">{{ server.users }}</span>
                 </div>
@@ -73,8 +73,8 @@
         </div>
       </div>
 
-      <div v-if="showFilters" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-        <div class="w-full max-w-[320px] rounded-[24px] border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200">
+      <div v-if="showFilters" class="fixed inset-0 z-1000 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="w-full max-w-[320px] rounded-3xl border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200">
           
           <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Número Máximo de Jugadores</h2>
           
@@ -95,11 +95,11 @@
 
           <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Región (Scrollable)</h2>
           <div class="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
-            <div class="flex-shrink-0 flex items-center gap-1 bg-[#e0e0e0] text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-md">
+            <div class="shrink-0 flex items-center gap-1 bg-[#e0e0e0] text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-md">
               EU <ion-icon :icon="checkbox"></ion-icon>
             </div>
             <div v-for="reg in ['NA', 'SA', 'AS']" :key="reg" 
-                 class="flex-shrink-0 flex items-center gap-1 bg-[#2a2a2a] text-[#888] px-3 py-1.5 rounded-lg text-xs border border-[#333]">
+                 class="shrink-0 flex items-center gap-1 bg-[#2a2a2a] text-[#888] px-3 py-1.5 rounded-lg text-xs border border-[#333]">
               {{ reg }} <ion-icon :icon="bookmarkOutline"></ion-icon>
             </div>
           </div>
@@ -179,10 +179,6 @@ const toggleFavorite = (server: any) => {
 </script>
 
 <style scoped>
-.main-bg {
-  --background: #121212;
-  font-family: 'Exo 2', sans-serif;
-}
 
 /* Ocultar scrollbar en el contenedor de regiones */
 .scrollbar-hide::-webkit-scrollbar {
