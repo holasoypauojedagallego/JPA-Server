@@ -6,6 +6,8 @@ http://ionicframework.com/docs/theming/ */
 
 :root {
 	--ion-font-family: 'Kodchasan', sans-serif;
+	--ion-background-color:#434343;
+	--ion-tab-bar-background:#323232;
 
 	--ion-color-primary: #A80F12;
 	--ion-color-primary-rgb: 168,15,18;
@@ -104,4 +106,8 @@ ion-button {
   font-size: 15px;
   --padding-start: 3.5vw;
   --padding-end: 3.5vw;
+}
+
+a{
+	cursor: pointer;
 }
