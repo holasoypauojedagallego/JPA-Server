@@ -1,23 +1,5 @@
 <template>
   <ion-page>
-    <header class="flex justify-around items-center bg-[#1a1a1a] py-3 border-b border-[#333] z-10">
-      <div class="flex flex-col items-center text-white border-b-2 border-[#c31d1d] pb-1">
-        <ion-icon :icon="searchOutline" class="text-2xl mb-1"></ion-icon>
-        <span class="text-[11px]">Servidores</span>
-      </div>
-      <div class="flex flex-col items-center text-[#888]">
-        <ion-icon :icon="gridOutline" class="text-2xl mb-1"></ion-icon>
-        <span class="text-[11px]">Crear Servidor</span>
-      </div>
-      <div class="flex flex-col items-center text-[#888]">
-        <ion-icon :icon="chatbubbleOutline" class="text-2xl mb-1"></ion-icon>
-        <span class="text-[11px]">Mensajes</span>
-      </div>
-      <div class="flex flex-col items-center text-[#888]">
-        <ion-icon :icon="personOutline" class="text-2xl mb-1"></ion-icon>
-        <span class="text-[11px]">Perfil</span>
-      </div>
-    </header>
 
     <ion-content :fullscreen="true" class="main-bg">
       <div class="flex flex-col items-center p-5">
