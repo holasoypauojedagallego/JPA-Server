@@ -16,11 +16,7 @@
       </ion-button>
 
       <div>
-        <div id="tooltip-jese" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
-            Jese Leos
-            <div class="tooltip-arrow" data-popper-arrow></div>
-        </div>
-        <img data-tooltip-target="tooltip-jese" class="w-10 h-10 rounded-base" src="/Daniel.png" alt="Medium avatar">
+        <Image imageClass="w-10 h-10 rounded-base" src="/Daniel.png" alt="Medium avatar" preview/>
       </div>
 
       <ExploreContainer name="Profile page" />
@@ -30,19 +26,16 @@
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
 import { useRouter } from 'vue-router';
+import Image from 'primevue/image';
 
 const router = useRouter();
 
 const goToLogin = () => {
   router.push("/login");
-}
+};
 </script>
 
 <style scoped>
-template {
-  justify-items: center;
-}
 </style>
 

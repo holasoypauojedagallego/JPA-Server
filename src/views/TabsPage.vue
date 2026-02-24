@@ -14,7 +14,7 @@
 
         <ion-tab-button tab="tabMessages" href="/home/messages">
           <ion-icon aria-hidden="true" :icon="chatbubblesOutline" />
-          <ion-badge color="danger">1</ion-badge>
+          <ion-badge color="danger">3</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button tab="tabProfile" href="/home/profile">

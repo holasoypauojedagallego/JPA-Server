@@ -111,3 +111,7 @@ ion-button {
 a{
 	cursor: pointer;
 }
+
+ion-badge {
+	padding: 2px 5px;
+}
