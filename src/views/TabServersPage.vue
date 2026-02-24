@@ -89,7 +89,7 @@
           <div class="flex flex-col gap-4 my-2">
             <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Solo Favoritos</span>
-              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
+              <input type="checkbox" class="text-2xl text-[#333] ">
             </div>
             <div class="flex justify-between items-center text-sm text-[#ccc]">
               <span>Circuitos DLC</span>

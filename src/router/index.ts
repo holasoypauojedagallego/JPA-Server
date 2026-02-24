@@ -48,6 +48,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/TabProfilePage.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'Not Found',
+    component: () => import('@/views/Error404Page.vue')
   }
 ]
 

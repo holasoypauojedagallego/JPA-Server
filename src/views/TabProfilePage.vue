@@ -11,12 +11,12 @@
           <ion-title size="large">Profile</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-button>
-        <span class="primary" @click.prevent="goToLogin">Volver a Iniciar Sesion</span>
+      <ion-button routerLink="/login">
+        <span class="primary">Volver a Iniciar Sesion</span>
       </ion-button>
 
-      <div>
-        <Image imageClass="w-10 h-10 rounded-base" src="/Daniel.png" alt="Medium avatar" preview/>
+      <div class="hover:animate-bounce">
+        <Image imageClass="w-70 h-70 rounded-base" src="/Daniel.png" alt="Medium avatar" preview/>
       </div>
 
       <ExploreContainer name="Profile page" />
@@ -37,5 +37,14 @@ const goToLogin = () => {
 </script>
 
 <style scoped>
+.elemento{
+  animation: var(--animate-pulse); 
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+}
+
 </style>
 

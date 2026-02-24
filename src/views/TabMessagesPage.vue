@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import Amigo from '@/components/Amigo.vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 let amigos = ref([
   {id: 1, name: 'Adrian Luque Diaz', lastMessage: 'Crema de dientes', img: '/aluque.png', noLeido: 3},
@@ -35,6 +35,13 @@ let amigos = ref([
   {id: 6, name: 'Tadi Sam Baudelio', lastMessage: 'Pollop', img: '/tadi.png'},
   {id: 7, name: 'Yalel Chuampi', lastMessage: 'fua el skate va que flipas colega', img: '/jjordan.png'}
   ]);
+
+  const numeroNoLeido = computed(() => {
+    return amigos.value.filter(a => a.noLeido).length;
+  });
+  console.log(numeroNoLeido.value);
+  
+
 </script>
 
 <style scoped>

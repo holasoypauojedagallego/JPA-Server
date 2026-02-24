@@ -16,12 +16,13 @@
             </ion-button>
           </form>
 
-          <div class="link-register p-1 mt-20 rounded-lg bg-black/6 md:bg-black/3">
-            <a @click="goToRegister" class="link-register">Registrarse</a>
+          <div class="link-register mt-20 rounded-lg bg-black/6 md:bg-black/3">
+            <ion-text routerLink="/register" class="link-register p-1">Registrarse</ion-text>
           </div>
           
-          <div class="footer-container p-1 rounded-lg bg-[#aaa]/6 md:bg-black/3">
-            <a class="link-forgot" @click="goToRecover">Recuperar contraseña...</a>
+          
+          <div class="footer-container rounded-lg bg-[#aaa]/6 md:bg-black/3">
+            <ion-text routerLink="/recover" class="link-forgot p-1">Recuperar contraseña...</ion-text>
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-import { IonPage, IonContent, IonInput, IonButton } from '@ionic/vue';
+import { IonPage, IonContent, IonInput, IonButton, IonText } from '@ionic/vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -97,6 +98,7 @@ const goToRecover = () => {
 .link-register, .link-forgot {
   text-decoration: none;
   font-style: italic;
+  cursor: pointer;
 }
 
 .link-register {
