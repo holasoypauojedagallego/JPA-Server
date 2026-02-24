@@ -19,7 +19,6 @@
         <Image imageClass="w-70 h-70 rounded-base" src="/Daniel.png" alt="Medium avatar" preview/>
       </div>
 
-      <ExploreContainer name="Profile page" />
     </ion-content>
   </ion-page>
 </template>

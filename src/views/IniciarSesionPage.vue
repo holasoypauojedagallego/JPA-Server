@@ -36,17 +36,10 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const goToRegister = () => {
-  router.push('/register'); 
-};
-
 const goToHome = () => {
     router.push('/home');
 }
 
-const goToRecover = () => {
-  router.push('/recover');
-};
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="success-bg" :scrollY="false">
-      <div class="vignette-overlay lg:"></div>
+      <div class="vignette-overlay"></div>
 
       <div class="success-wrapper md:ml-[55vw] sm:ml-[45vw]">
         <div class="info-panel md:bg-black/0 bg-[#333333]/85 rounded-lg p-3 md:m-0 mt-50">

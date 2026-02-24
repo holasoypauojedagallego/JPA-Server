@@ -14,7 +14,7 @@
 
         <ion-tab-button tab="tabMessages" href="/home/messages">
           <ion-icon aria-hidden="true" :icon="chatbubblesOutline" />
-          <ion-badge color="danger">3</ion-badge>
+          <ion-badge color="danger">{{ref(numeroNoLeido)}}</ion-badge>
         </ion-tab-button>
 
         <ion-tab-button tab="tabProfile" href="/home/profile">
@@ -34,6 +34,14 @@
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonIcon, IonPage, IonRouterOutlet, IonBadge } from '@ionic/vue';
 import { chatbubblesOutline, constructOutline, searchOutline } from 'ionicons/icons';
+import { dbamigos } from '@/components/datos';
+import { ref, computed} from 'vue';
+
+const amigos = ref(dbamigos);
+
+const numeroNoLeido = computed(() => {
+  return amigos.value.filter(a => a.noLeido).length;
+});
 
 </script>
 <style>
