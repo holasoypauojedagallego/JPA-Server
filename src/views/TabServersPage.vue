@@ -1,6 +1,5 @@
 <template>
   <ion-page>
-
     <ion-content :fullscreen="true" class="main-bg">
       <div class="flex flex-col items-center p-5">
         <h1 class="text-white text-3xl tracking-[2px] font-light my-4 italic">SERVIDORES</h1>
@@ -35,10 +34,15 @@
                          :class="[server.signal >= i ? 'bg-[#39ff14]' : 'bg-white/20', i === 1 ? 'h-[30%]' : i === 2 ? 'h-[50%]' : i === 3 ? 'h-[75%]' : 'h-full']">
                     </div>
                   </div>
-                  <div class="flex">
-                    <div v-for="i in 5" :key="i" 
-                              class="text-[14px] mr-px" 
-                              :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'"></div>
+                  <div class="flex items-center">
+                    <ion-icon 
+                    v-for="i in 5" 
+                    :key="i" 
+                    :icon="star" 
+                    @click.stop="server.stars = i"
+                    class="text-[16px] mr-px cursor-pointer transition-all duration-200" 
+                    :class="i <= server.stars ? 'text-[#ffd700] drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]' : 'text-black/30 hover:text-[#ffd700]/50'"
+                  ></ion-icon>
                   </div>
                   <span class="text-white text-xs font-semibold">{{ server.users }}</span>
                 </div>
@@ -55,64 +59,41 @@
         </div>
       </div>
 
-      <div v-if="showFilters" class="fixed inset-0 z-1000 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+      <div v-if="showFilters" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
         <div class="w-full max-w-[320px] rounded-3xl border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200">
           
-          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Número Máximo de Jugadores</h2>
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider font-bold">Número Máximo de Jugadores</h2>
           
           <div class="flex items-center gap-3 mb-6">
             <span class="text-xs text-[#555]">0</span>
             <div class="relative flex-1 flex items-center">
-              <input 
-                type="range" 
-                min="0" 
-                max="16" 
-                v-model="maxPlayers"
-                class="custom-slider" 
-                :style="sliderStyle"
-              >
+              <input type="range" min="0" max="16" v-model="maxPlayers" class="custom-slider" :style="sliderStyle">
             </div>
             <span class="text-xs text-[#555]">16</span>
           </div>
 
-          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider">Región (Scrollable)</h2>
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider font-bold">Región</h2>
           <div class="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
-            <div class="shrink-0 flex items-center gap-1 bg-[#e0e0e0] text-black px-3 py-1.5 rounded-lg text-xs font-bold shadow-md">
-              EU <ion-icon :icon="checkbox"></ion-icon>
-            </div>
-            <div v-for="reg in ['NA', 'SA', 'AS']" :key="reg" 
-                 class="shrink-0 flex items-center gap-1 bg-[#2a2a2a] text-[#888] px-3 py-1.5 rounded-lg text-xs border border-[#333]">
-              {{ reg }} <ion-icon :icon="bookmarkOutline"></ion-icon>
+            <div v-for="r in ['EU', 'NA', 'SA', 'AS']" :key="r" @click="sel = r"
+                 :class="sel === r ? 'bg-[#dcdcdc] text-black border-transparent' : 'bg-[#2a2a2a] text-[#888] border-[#333]'"
+                 class="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all cursor-pointer">
+              {{ r }}
+              <div :class="sel === r ? 'bg-black' : 'bg-[#1c1c1c] border border-[#444]'" class="w-4 h-4 rounded-[3px] flex items-center justify-center">
+                <ion-icon :icon="sel === r ? checkmark : checkbox" :class="sel === r ? 'text-white text-[11px]' : 'text-[#555] text-[10px]'"></ion-icon>
+              </div>
             </div>
           </div>
 
           <div class="flex flex-col gap-4 my-2">
-            <div class="flex justify-between items-center text-sm text-[#ccc]">
-              <span>Solo Favoritos</span>
-              <input type="checkbox" class="text-2xl text-[#333] ">
-            </div>
-            <div class="flex justify-between items-center text-sm text-[#ccc]">
-              <span>Circuitos DLC</span>
-              <ion-icon :icon="checkbox" class="text-2xl text-[#c31d1d]"></ion-icon>
-            </div>
-            <div class="flex justify-between items-center text-sm text-[#ccc]">
-              <span>Con contraseña</span>
-              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
-            </div>
-            <div class="flex justify-between items-center text-sm text-[#ccc]">
-              <span>Solo Amigos</span>
-              <ion-icon :icon="bookmarkOutline" class="text-2xl text-[#333]"></ion-icon>
-            </div>
-            <div class="flex justify-between items-center font-bold text-white text-base pt-2 border-t border-white/5">
-              <span>Competitivo</span>
-              <ion-icon :icon="checkbox" class="text-2xl text-[#c31d1d]"></ion-icon>
+            <div v-for="f in filterOptions" :key="f.label" @click="f.val = !f.val" class="flex justify-between items-center cursor-pointer group">
+              <span :class="f.val ? 'text-white' : 'text-[#ccc]'" class="text-sm transition-colors">{{ f.label }}</span>
+              <div :class="f.val ? 'bg-[#c31d1d]' : 'bg-transparent border border-[#444]'" class="w-5 h-5 rounded-[4px] flex items-center justify-center transition-all">
+                <ion-icon v-if="f.val" :icon="checkmark" class="text-white text-[14px]"></ion-icon>
+              </div>
             </div>
           </div>
 
-          <button 
-            @click="showFilters = false"
-            class="mt-6 w-full bg-[#c31d1d] py-3 rounded-xl font-bold text-white shadow-[0_4px_0_#8b0000] active:translate-y-1 active:shadow-none transition-all uppercase tracking-widest text-sm"
-          >
+          <button @click="showFilters = false" class="mt-6 w-full bg-[#c31d1d] py-3 rounded-xl font-bold text-white shadow-[0_4px_0_#8b0000] active:translate-y-1 active:shadow-none transition-all uppercase tracking-widest text-sm">
             GUARDAR
           </button>
         </div>
@@ -125,75 +106,53 @@
 import { ref, computed } from 'vue';
 import { IonPage, IonContent, IonIcon } from '@ionic/vue';
 import { 
-  searchOutline, gridOutline, chatbubbleOutline, personOutline, 
-  pricetagOutline, star, bookmarkOutline, bookmark, checkbox 
+  searchOutline, pricetagOutline, star, bookmarkOutline, bookmark, checkmark, 
+  checkbox
 } from 'ionicons/icons';
 import { dbservers } from '@/components/datos';
 
 const showFilters = ref(false);
-
-// Nueva variable para el slider
 const maxPlayers = ref(16);
-
-// Computed property para el fondo bicolor del slider
-const sliderStyle = computed(() => {
-  const percentage = (maxPlayers.value / 16) * 100;
-  return {
-    background: `linear-gradient(to right, #c31d1d ${percentage}%, #ffffff ${percentage}%)`
-  };
-});
-
-// El array donde estan los datos de los servidores, es en @/componentes/datos.ts, lo he cambiado para centralizarlo todo más fácilmente
+const sel = ref('EU');
 const servers = ref(dbservers);
 
-const toggleFavorite = (server: any) => {
-  server.isFavorite = !server.isFavorite;
-};
+// Filtros inferiores reactivos
+const filterOptions = ref([
+  { label: 'Solo Favoritos', val: false },
+  { label: 'Circuitos DLC', val: true },
+  { label: 'Con contraseña', val: false },
+  { label: 'Solo Amigos', val: false },
+  { label: 'Competitivo', val: true }
+]);
+
+const sliderStyle = computed(() => {
+  const percentage = (maxPlayers.value / 16) * 100;
+  return { background: `linear-gradient(to right, #c31d1d ${percentage}%, #ffffff ${percentage}%)` };
+});
+
+const toggleFavorite = (server: any) => { server.isFavorite = !server.isFavorite; };
 </script>
 
 <style scoped>
+.main-bg { --background: #121212; font-family: 'Exo 2', sans-serif; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Ocultar scrollbar en el contenedor de regiones */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* --- NUEVOS ESTILOS PARA EL SLIDER BICOLOR --- */
 .custom-slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 4px; /* Grosor de la línea */
+  height: 4px;
   border-radius: 999px;
   outline: none;
   cursor: pointer;
-  /* Transición suave al arrastrar */
-  transition: background 0.1s ease;
 }
 
-/* Estilo para el input range (el círculo blanco) en Webkit (Chrome/Safari) */
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 14px;
   height: 14px;
   background: white;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255,255,255,0.8);
-  cursor: pointer;
-}
-
-/* Estilo para el input range en Firefox */
-.custom-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: white;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255,255,255,0.8);
-  cursor: pointer;
 }
 </style>

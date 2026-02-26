@@ -1,7 +1,7 @@
 const dbamigos = [
   {id: 1, name: 'Adrian Luque Diaz', lastMessage: 'Crema de dientes', img: '/aluque.png', noLeido: 3},
   {id: 2, name: 'Jose Gitanillo', lastMessage: 'Alcachofas', img: '/jjimenez.png', noLeido: 2},
-  {id: 3, name: 'Justin GayAlvarez', lastMessage: 'Mena', img: '/jalvarez.png'},
+  {id: 3, name: 'Justin Alvarez', lastMessage: 'Mena', img: '/jalvarez.png'},
   {id: 4, name: 'Anass El Ouardi', lastMessage: 'Yo soy el mena', img: '/aelouardi.png', noLeido: 67},
   {id: 5, name: 'Safu Santiago Fuentes', lastMessage: 'Hola me han robado el pelo', img: '/isantiago.png'},
   {id: 6, name: 'Tadi Sam Baudelio', lastMessage: 'Pollop', img: '/tadi.png'},
