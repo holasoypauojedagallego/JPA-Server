@@ -15,7 +15,7 @@
         <span class="primary">Volver a Iniciar Sesion</span>
       </ion-button>
 
-      <div class="hover:animate-bounce">
+      <div class="hover:animate-bounce animate-none transition duration-300 w-70">
         <Image imageClass="w-70 h-70 rounded-base" src="/Daniel.png" alt="Medium avatar" preview/>
       </div>
 
