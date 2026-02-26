@@ -11,7 +11,7 @@
     <ion-content :fullscreen="true">
       <div class="min-h-full flex flex-col items-center p-6 bg-[#121212]">
         
-        <div class="bg-[#8b0000] w-full max-w-[900px] rounded-[30px] p-8 md:p-10 relative shadow-2xl border border-white/10 mt-4">
+        <div class="bg-[#8b0000] w-full max-w-225 rounded-[30px] p-8 md:p-10 relative shadow-2xl border border-white/10 mt-4">
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             
@@ -89,7 +89,8 @@
               @touchstart="startPress" 
               @touchend="endPress"
               fill="solid"
-              class="custom-btn btn-blue w-full sm:w-[240px] h-[50px] font-bold uppercase italic tracking-[2px] relative overflow-hidden"
+              class="custom-btn btn-blue w-full sm:w-60 h-12.5 font-bold uppercase italic tracking-[2px] relative overflow-hidden"
+              
             >
               <div 
                 class="absolute left-0 top-0 h-full bg-[#134a6e] transition-all duration-100 ease-linear pointer-events-none"
@@ -101,13 +102,13 @@
             <ion-button 
               @click="reiniciarFormulario" 
               fill="solid"
-              class="custom-btn btn-red w-full sm:w-[200px] h-[50px] font-bold uppercase italic tracking-[2px]"
+              class="custom-btn btn-red w-full sm:w-50 h-12.5 font-bold uppercase italic tracking-[2px]"
             >
               Reiniciar
             </ion-button>
           </div>
 
-          <div v-if="mostrarMensaje" class="fixed inset-0 flex items-center justify-center z-[2000] p-4">
+          <div v-if="mostrarMensaje" class="fixed inset-0 flex items-center justify-center z-2000 p-4">
             <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
             <div class="relative bg-[#1c1c1c] px-12 py-10 rounded-3xl shadow-2xl border border-[#c31d1d] text-center min-w-[320px] animate-in zoom-in duration-300">
               <p class="text-white italic text-xl font-bold uppercase tracking-wider leading-tight">
@@ -165,12 +166,12 @@ const startPress = () => {
       crearServidor();
       endPress();
     }
-  }, 3000);
+  }, 1700);
 
   // Intervalo para actualizar la barra de progreso visual
   progressInterval = setInterval(() => {
     if (isPressing.value && pressProgress.value < 100) {
-      pressProgress.value += 1;
+      pressProgress.value += 2;
     } else {
       clearInterval(progressInterval);
     }
@@ -212,12 +213,6 @@ const crearServidor = () => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-/* Fuente Exo 2 global para el componente */
-* {
-  font-family: 'Exo 2', sans-serif !important;
-}
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
@@ -248,11 +243,11 @@ const crearServidor = () => {
 
 /* BOTONES PERSONALIZADOS SIN BORDE NEGRO */
 .custom-btn {
-  --border-width: 0px; /* Borde eliminado */
-  --border-style: none; /* Borde eliminado */
-  --border-color: transparent; /* Borde eliminado */
+  --border-width: 2px;
+  --border-style: solid;
+  --border-color: black;
+  --border-radius: 999px;
   
-  --border-radius: 999px; /* Botón ovalado */
   --box-shadow: 0 4px 0px rgba(0,0,0,0.4); /* Sombra 3D inferior */
   margin: 0;
   user-select: none;
@@ -263,8 +258,6 @@ const crearServidor = () => {
 ion-button::part(native) { 
   font-style: italic !important; 
   font-weight: 700 !important;
-  font-family: 'Exo 2', sans-serif !important;
-  border: none !important;
 }
 
 .btn-blue { --background: #1a6596; } /* Azul base */
@@ -278,6 +271,7 @@ ion-button::part(native) {
 
 /* SLIDER */
 .custom-slider {
+  appearance: none;
   -webkit-appearance: none;
   height: 6px;
   border-radius: 5px;
@@ -292,7 +286,7 @@ ion-button::part(native) {
   cursor: pointer;
 }
 
-.ion-button{
+ion-button{
     border: none;
 }
 </style>

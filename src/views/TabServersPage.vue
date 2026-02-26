@@ -1,224 +1,206 @@
 <template>
-  <ion-page class="font-exo">
-    <ion-header shadow="none">
+  <ion-page>
+    <ion-header>
       <ion-toolbar>
-        <ion-title class="ion-text-center text-2xl uppercase font-bold italic tracking-widest">
-          CREAR SERVIDOR
-        </ion-title>
+        <ion-title class="ion-text-center text-2xl uppercase font-semibold">SERVIDORES</ion-title>
       </ion-toolbar>
     </ion-header>
+    <ion-content :fullscreen="true" class="main-bg">
+      
+      <div v-if="!selectedServer" class="flex flex-col items-center p-5 animate-in fade-in duration-300">
 
-    <ion-content :fullscreen="true">
-      <div class="min-h-full flex flex-col items-center p-6 bg-[#121212]">
-        
-        <div class="bg-[#8b0000] w-full max-w-[900px] rounded-[30px] p-8 md:p-10 relative shadow-2xl border border-white/10 mt-4">
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="flex items-center gap-4 w-full max-w-150 mb-6">
+          <div class="flex-1 flex items-center bg-[#2d2d2d]/90 rounded-full px-5 py-2 border border-[#444]">
+            <input type="text" placeholder="Escribir Mensaje..." class="bg-transparent border-none text-[#ccc] italic w-full outline-none text-sm" />
+            <ion-icon :icon="searchOutline" class="text-[#ccc] text-xl"></ion-icon>
+          </div>
+          <ion-icon :icon="pricetagOutline" class="text-[#5d6d7e] text-3xl cursor-pointer rotate-45 hover:text-white transition-colors" @click="showFilters = true"></ion-icon>
+        </div>
+
+        <div class="flex flex-col gap-4 w-full max-w-175">
+          <div v-for="server in servers" :key="server.id" 
+               @click="selectedServer = server" 
+               class="bg-[#8b0000] rounded-[18px] p-4 flex justify-between items-center shadow-lg transition-transform active:scale-[0.98] cursor-pointer">
             
-            <div class="flex flex-col gap-5">
-              <input 
-                v-model="serverData.titulo" 
-                type="text" 
-                placeholder="Ingrese el titulo..." 
-                class="w-full bg-[#333333] text-white placeholder-white/50 text-center py-3 rounded-full border border-white/10 outline-none italic font-medium"
-              />
-
-              <input 
-                v-model="serverData.circuito" 
-                type="text" 
-                placeholder="Ingrese el circuito..." 
-                class="w-full bg-[#333333] text-white placeholder-white/50 text-center py-3 rounded-full border border-white/10 outline-none italic font-medium"
-              />
-
-              <textarea 
-                v-model="serverData.descripcion" 
-                placeholder="Ingrese una descripción...(Opcional)" 
-                rows="6"
-                class="w-full bg-[#333333] text-white placeholder-white/50 text-center py-6 rounded-2xl border border-white/10 outline-none resize-none italic font-medium"
-              ></textarea>
-            </div>
-
-            <div class="flex flex-col items-center justify-start gap-6">
-              
-              <div class="w-32 h-32 bg-[#e0e0e0] rounded-full flex items-center justify-center border-4 border-[#333333] shadow-lg mb-2">
-                <ion-icon :icon="imageOutline" class="text-5xl text-black"></ion-icon>
-              </div>
-
-              <div class="w-full flex flex-col items-center">
-                <h3 class="text-white text-sm font-bold mb-3 text-center uppercase italic">Número Máximo de Jugadores</h3>
-                <div class="flex items-center w-full gap-3 px-4 text-white">
-                  <span class="text-xs font-bold italic">0</span>
-                  <input 
-                    type="range" min="0" max="16" 
-                    v-model="serverData.maxJugadores" 
-                    class="custom-slider w-full" 
-                    :style="sliderStyle"
-                  >
-                  <span class="text-xs font-bold italic">16</span>
-                </div>
-                <span class="text-white/70 text-xs mt-2 italic font-bold uppercase tracking-wider">{{ serverData.maxJugadores }} Jugadores</span>
-              </div>
-
-              <div class="w-full flex flex-col items-center mt-2">
-                <h3 class="text-white text-[13px] font-bold mb-3 uppercase italic">REGION (Scrollable)</h3>
-                <div class="flex gap-3 overflow-x-auto max-w-full pb-2 scrollbar-hide">
-                  <div 
-                    v-for="region in regiones" 
-                    :key="region.id"
-                    @click="toggleRegion(region.id)"
-                    class="region-pill transition-all duration-200"
-                    :class="region.selected ? 'pill-selected' : 'pill-unselected'"
-                  >
-                    <span class="text-[11px] font-bold italic">{{ region.name }}</span>
-                    <div class="checkbox-box" :class="{'checkbox-selected': region.selected}">
-                      <ion-icon v-if="region.selected" :icon="checkmarkOutline" class="text-white text-[12px]"></ion-icon>
+            <div class="flex items-center gap-4">
+              <img :src="server.image" class="w-14 h-14 rounded-full border-2 border-white/10" />
+              <div class="flex flex-col">
+                <h3 class="text-white text-lg font-bold leading-tight">{{ server.name }}</h3>
+                <p class="text-white/80 text-sm italic">{{ server.track }}</p>
+                <div class="flex items-center gap-3 mt-1">
+                  <div class="flex items-end gap-0.75 h-3.75">
+                    <div v-for="i in 4" :key="i" class="w-1 rounded-sm" 
+                         :class="[server.signal >= i ? 'bg-[#39ff14]' : 'bg-white/20', i === 1 ? 'h-[30%]' : i === 2 ? 'h-[50%]' : i === 3 ? 'h-[75%]' : 'h-full']">
                     </div>
                   </div>
+                  <div class="flex items-center">
+                    <ion-icon 
+                    v-for="i in 5" 
+                    :key="i" 
+                    :icon="star" 
+                    @click.stop="server.stars = i"
+                    class="text-[16px] mr-px cursor-pointer transition-all duration-200" 
+                    :class="i <= server.stars ? 'text-[#ffd700] hover:text-black/60 drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]' : 'text-black/30 hover:text-[#ffd700]/50'"
+                  ></ion-icon>
+                  </div>
+                  <span class="text-white text-xs font-semibold">{{ server.users }}</span>
                 </div>
               </div>
+            </div>
 
+            <div class="cursor-pointer p-2" @click.stop="toggleFavorite(server)">
+              <ion-icon :icon="server.isFavorite ? bookmark : bookmarkOutline" 
+                class="text-2xl transition-all"
+                :class="server.isFavorite ? 'text-white' : 'text-white/40'">
+              </ion-icon>
             </div>
           </div>
-
-          <div class="flex flex-col sm:flex-row justify-center gap-8 mt-12">
-            
-            <ion-button 
-              @mousedown="startPress" 
-              @mouseup="endPress" 
-              @mouseleave="endPress"
-              @touchstart="startPress" 
-              @touchend="endPress"
-              fill="solid"
-              class="custom-btn btn-blue w-full sm:w-[240px] h-[55px] font-bold uppercase italic tracking-[2px] relative overflow-hidden"
-            >
-              <div 
-                class="absolute left-0 top-0 h-full bg-[#134a6e] transition-all duration-80 ease-linear pointer-events-none"
-                :style="{ width: pressProgress + '%' }"
-              ></div>
-              <span class="relative z-10">Crear Servidor</span>
-            </ion-button>
-
-            <ion-button 
-              @click="reiniciarFormulario" 
-              fill="solid"
-              class="custom-btn btn-red w-full sm:w-[200px] h-[55px] font-bold uppercase italic tracking-[2px]"
-            >
-              Reiniciar
-            </ion-button>
-          </div>
-
-          <div v-if="mostrarMensaje" class="fixed inset-0 flex items-center justify-center z-[2000] p-4">
-            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-            <div class="relative bg-[#1c1c1c] px-12 py-10 rounded-3xl shadow-2xl border-2 border-black text-center min-w-[320px] animate-in zoom-in duration-300">
-              <p class="text-white italic text-xl font-bold uppercase tracking-wider leading-tight">
-                SERVIDOR CREADO<br>CORRECTAMENTE
-              </p>
-            </div>
-          </div>
-
         </div>
       </div>
+
+      <DetallesServidorPage 
+  v-else 
+  :server="selectedServer" 
+  @back="selectedServer = null" 
+/>
+
+      <div v-if="showFilters" class="fixed inset-0 z-1000 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="w-full max-w-[320px] rounded-3xl border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl">
+          
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase font-bold">Número Máximo de Jugadores</h2>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="text-xs text-[#555]">0</span>
+            <input type="range" min="0" max="16" v-model="maxPlayers" class="custom-slider" :style="sliderStyle">
+            <span class="text-xs text-[#555]">16</span>
+          </div>
+
+          <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase font-bold">Región</h2>
+          <div class="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-hide">
+            <div v-for="r in ['EU', 'NA', 'SA', 'AS']" :key="r" @click="toggleRegion(r)"
+                 :class="seleccionadas.includes(r) ? 'bg-[#dcdcdc] text-black border-transparent' : 'bg-[#2a2a2a] text-[#888] border-[#333]'"
+                 class="shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all cursor-pointer">
+              {{ r }}
+              <div :class="seleccionadas.includes(r) ? 'bg-black' : 'bg-transparent border border-[#444]'" 
+                   class="w-4 h-4 rounded-[3px] flex items-center justify-center">
+                <ion-icon v-if="seleccionadas.includes(r)" :icon="checkmark" class="text-white text-[11px]"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4 my-2">
+            <div v-for="f in filterOptions" :key="f.label" @click="f.val = !f.val" class="flex justify-between items-center cursor-pointer">
+              <span :class="f.val ? 'text-white' : 'text-[#ccc]'" class="text-sm">{{ f.label }}</span>
+              <div :class="f.val ? 'bg-[#c31d1d]' : 'bg-transparent border border-[#444]'" class="w-5 h-5 rounded-sm flex items-center justify-center">
+                <ion-icon v-if="f.val" :icon="checkmark" class="text-white text-[14px]"></ion-icon>
+              </div>
+            </div>
+          </div>
+
+          <ion-button 
+            @click="showFilters = false" 
+            fill="solid"
+            class="filter-save-btn w-full h-12 font-bold italic tracking-[2px] uppercase text-sm"
+          >
+            GUARDAR
+          </ion-button>
+        </div>
+      </div>
+
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon, IonButton } from '@ionic/vue';
-import { imageOutline, checkmarkOutline } from 'ionicons/icons';
+import { IonPage, IonContent, IonIcon, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/vue';
+import { 
+  searchOutline, pricetagOutline, star, bookmarkOutline, bookmark, checkmark 
+} from 'ionicons/icons';
+import { dbservers } from '@/components/datos';
 
-const serverData = ref({ titulo: '', circuito: '', descripcion: '', maxJugadores: 12 });
-const regiones = ref([
-  { id: 'eu', name: 'EU', selected: true },
-  { id: 'na', name: 'NA', selected: false },
-  { id: 'sa', name: 'SA', selected: false },
-  { id: 'as', name: 'AS', selected: false },
-  { id: 'oc', name: 'OC', selected: false }
+import DetallesServidorPage from "@/components/DetallesServidorPage.vue";
 
+const showFilters = ref(false);
+const maxPlayers = ref(16);
+const servers = ref(dbservers);
+
+// NUEVO: Variables de navegación y región múltiple
+const selectedServer = ref<any>(null);
+const seleccionadas = ref(['EU']);
+
+const filterOptions = ref([
+  { label: 'Solo Favoritos', val: false },
+  { label: 'Circuitos DLC', val: true },
+  { label: 'Con contraseña', val: false },
+  { label: 'Solo Amigos', val: false },
+  { label: 'Competitivo', val: true }
 ]);
 
-const mostrarMensaje = ref(false);
-const isPressing = ref(false);
-const pressProgress = ref(0);
-let pressTimer: any = null;
-let progressInterval: any = null;
-
-const startPress = () => {
-  isPressing.value = true;
-  pressProgress.value = 0;
-  pressTimer = setTimeout(() => { if (isPressing.value) { crearServidor(); endPress(); } }, 2000);
-  progressInterval = setInterval(() => {
-    if (isPressing.value && pressProgress.value < 100) pressProgress.value += 1;
-    else clearInterval(progressInterval);
-  }, 20);
-};
-
-const endPress = () => {
-  isPressing.value = false;
-  pressProgress.value = 0;
-  clearTimeout(pressTimer);
-  clearInterval(progressInterval);
+const toggleRegion = (r: string) => {
+  if (seleccionadas.value.includes(r)) {
+    seleccionadas.value = seleccionadas.value.filter(item => item !== r);
+  } else {
+    seleccionadas.value.push(r);
+  }
 };
 
 const sliderStyle = computed(() => {
-  const p = (serverData.value.maxJugadores / 16) * 100;
-  return { background: `linear-gradient(to right, #c31d1d ${p}%, #555555 ${p}%)` };
+  const p = (maxPlayers.value / 16) * 100;
+  return { background: `linear-gradient(to right, #c31d1d ${p}%, #ffffff ${p}%)` };
 });
 
-const toggleRegion = (id: string) => {
-  const r = regiones.value.find(reg => reg.id === id);
-  if (r) r.selected = !r.selected;
-};
-
-const reiniciarFormulario = () => {
-  serverData.value = { titulo: '', circuito: '', descripcion: '', maxJugadores: 12 };
-  regiones.value.forEach(r => r.selected = r.id === 'eu');
-};
-
-const crearServidor = () => {
-  mostrarMensaje.value = true;
-  setTimeout(() => { mostrarMensaje.value = false; reiniciarFormulario(); }, 2500);
-};
+const toggleFavorite = (server: any) => { server.isFavorite = !server.isFavorite; };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-* { font-family: 'Exo 2', sans-serif !important; }
+.main-bg { --background: #121212; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-.region-pill {
-  display: flex; align-items: center; gap: 12px; padding: 6px 14px;
-  border-radius: 10px; cursor: pointer; min-width: 90px; justify-content: space-between;
+.custom-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
 }
-.pill-selected { background-color: #dcdcdc; color: #000; }
-.pill-unselected { background-color: #2a2a2a; color: #888; border: 1px solid #333; }
-.checkbox-box { width: 16px; height: 16px; border-radius: 3px; display: flex; align-items: center; justify-content: center; border: 1px solid #444; }
-.checkbox-selected { background-color: #000; border: none; }
 
-.custom-btn {
-  --border-width: 2.5px;
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+.filter-save-btn {
+  --background: #c31d1d;
+  --background-activated: #a01818;
+  --background-hover: #d62222;
+  
+  --border-width: 3px;
   --border-style: solid;
-  --border-color: #000000;
+  --border-color: black;
   --border-radius: 999px;
-  --box-shadow: 0 5px 0px rgba(0,0,0,1);
+  
   margin: 0;
-  transition: all 0.1s ease;
+  margin-top: 10px;
 }
 
+.filter-save-btn::part(native) {
+  font-style: italic;
+  padding-top: 2px;
+} 
 
-
-.btn-blue { --background: #1a6596; }
-.btn-red { --background: #c31d1d; }
-
-.custom-btn:active {
-  transform: translateY(3px);
-  --box-shadow: 0 2px 0px rgba(0,0,0,1);
+.filter-save-btn:active {
+  transform: translateY(2px);
+  --box-shadow: none;
 }
 
-/* SLIDER */
-.custom-slider { -webkit-appearance: none; height: 6px; border-radius: 5px; outline: none; }
-.custom-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: white; border-radius: 50%; }
-
-
+ion-button{
+    border: none;
+}
 </style>
