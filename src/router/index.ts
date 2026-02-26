@@ -23,6 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/recover',
     component: () => import('@/views/RecuperarContraseñaPage.vue')
   },
+  
   {
     path: '/home/',
     component: TabsPage,
@@ -36,8 +37,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/TabServersPage.vue')
       },
       {
-        path: 'createServer',
-        component: () => import('@/views/TabCreatePage.vue')
+        path: 'create',
+        component: () => import('@/views/TabCreateServerPage.vue')
       },
       {
         path: 'messages',
@@ -46,7 +47,8 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'profile',
         component: () => import('@/views/TabProfilePage.vue')
-      }
+      },
+      
     ]
   },
   {

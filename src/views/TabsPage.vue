@@ -8,7 +8,7 @@
           <ion-icon aria-hidden="true" :icon="searchOutline" />
         </ion-tab-button>
 
-        <ion-tab-button tab="tabCreate" href="/home/createServer">
+        <ion-tab-button tab="tabCreate" href="/home/create">
           <ion-icon aria-hidden="true" :icon="constructOutline" />
         </ion-tab-button>
 
