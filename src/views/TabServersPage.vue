@@ -8,7 +8,6 @@
     <ion-content :fullscreen="true" class="main-bg">
       
       <div v-if="!selectedServer" class="flex flex-col items-center p-5 animate-in fade-in duration-300">
-        <h1 class="text-white text-3xl tracking-[2px] font-light my-4 italic uppercase">SERVIDORES</h1>
 
         <div class="flex items-center gap-4 w-full max-w-150 mb-6">
           <div class="flex-1 flex items-center bg-[#2d2d2d]/90 rounded-full px-5 py-2 border border-[#444]">
@@ -35,10 +34,14 @@
                     </div>
                   </div>
                   <div class="flex items-center">
-                    <ion-icon v-for="i in 5" :key="i" :icon="star" 
-                      :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'"
-                      class="text-[12px] mr-px">
-                    </ion-icon>
+                    <ion-icon 
+                    v-for="i in 5" 
+                    :key="i" 
+                    :icon="star" 
+                    @click.stop="server.stars = i"
+                    class="text-[16px] mr-px cursor-pointer transition-all duration-200" 
+                    :class="i <= server.stars ? 'text-[#ffd700] hover:text-black/60 drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]' : 'text-black/30 hover:text-[#ffd700]/50'"
+                  ></ion-icon>
                   </div>
                   <span class="text-white text-xs font-semibold">{{ server.users }}</span>
                 </div>
@@ -94,12 +97,12 @@
           </div>
 
           <ion-button 
-  @click="showFilters = false" 
-  fill="solid"
-  class="filter-save-btn w-full h-12 font-bold italic tracking-[2px] uppercase text-sm mt-6"
->
-  GUARDAR
-</ion-button>
+            @click="showFilters = false" 
+            fill="solid"
+            class="filter-save-btn w-full h-12 font-bold italic tracking-[2px] uppercase text-sm"
+          >
+            GUARDAR
+          </ion-button>
         </div>
       </div>
 
@@ -109,13 +112,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { IonPage, IonContent, IonIcon, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonPage, IonContent, IonIcon, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/vue';
 import { 
   searchOutline, pricetagOutline, star, bookmarkOutline, bookmark, checkmark 
 } from 'ionicons/icons';
 import { dbservers } from '@/components/datos';
 
-import DetallesServidorPage from "./DetallesServidorPage.vue";
+import DetallesServidorPage from "@/components/DetallesServidorPage.vue";
 
 const showFilters = ref(false);
 const maxPlayers = ref(16);
@@ -150,7 +153,7 @@ const toggleFavorite = (server: any) => { server.isFavorite = !server.isFavorite
 </script>
 
 <style scoped>
-.main-bg { --background: #121212; font-family: 'Exo 2', sans-serif; }
+.main-bg { --background: #121212; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
