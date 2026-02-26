@@ -50,30 +50,30 @@
         </div>
   
         <!-- ICONOS INFERIORES -->
-        <div class="flex justify-between items-end mt-10 px-2">
+        <div class="flex justify-between items-end mt-10 px-2 w-full gap-1">
   
           <!-- Señal izquierda -->
           <div class="flex items-end gap-1.5 h-10">
             <div v-for="i in 4" :key="i"
-              class="w-2 rounded-sm"
+              class="sm:w-2 w-1 rounded-sm"
               :class="[server.signal >= i ? 'bg-[#39ff14]' : 'bg-white/20']"
               :style="{ height: (i * 25) + '%' }">
             </div>
           </div>
   
           <!-- Derecha: estrellas + usuarios + favorito -->
-          <div class="flex items-center gap-6">
+          <div class="flex items-center sm:gap-6 gap-4">
   
-            <div class="flex gap-1">
+            <div class="flex sm:gap-1 gap-0.5">
               <ion-icon 
                 v-for="i in 5" :key="i" :icon="star" 
                 @click="server.stars = i"
                 :class="i <= server.stars ? 'text-[#ffd700]' : 'text-black/30'" 
-                class="text-2xl cursor-pointer">
+                class="sm:text-2xl text-lg cursor-pointer">
               </ion-icon>
             </div>
   
-            <span class="text-white text-lg font-bold italic">
+            <span class="text-white sm:text-lg text-sm font-bold italic">
               {{ server.users }}
             </span>
   
