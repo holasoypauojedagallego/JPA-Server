@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title class="ion-text-center">Messages</ion-title>
+        <ion-title class="ion-text-center text-2xl uppercase font-semibold">Mensajes</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -41,13 +41,16 @@
               </div>
             </div>
 
-            <div class="p-4 rounded-xl border-t border-gray-700">
+            <div class="p-4 rounded-xl border-t border-gray-700 content-center flex items-center gap-3 w-full justify-center">
               <input 
                 type="text"
                 class="w-[85%] p-2.5 rounded-xl bg-gray-800 text-white"
                 placeholder="Escribe un mensaje..."
+                id="mensaje"
+                name="mensaje"
+                v-model="mensaje"
               />
-              <ion-icon aria-hidden="true" :icon="constructOutline" role="img" />
+              <button type="submit" class="w-8 h-8" @click="mensajeVolver"><ion-icon aria-hidden="true" :icon="send" class="w-8 h-8" /></button>
             </div>
 
           </div>
@@ -70,6 +73,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonIcon } from '@
 import { ref } from 'vue';
 import { dbamigos } from '@/components/datos';
 import Image from 'primevue/image';
+import { send } from 'ionicons/icons';
 
 let amigos = ref(dbamigos);
 
@@ -78,6 +82,14 @@ const amigoSeleccionado = ref();
 const seleccionarAmigo = (amigo:any) => {
   amigoSeleccionado.value = amigo;
 }
+
+const mensaje = ref();
+
+const mensajeVolver = () => {
+  mensaje.value = "";
+}
+
+
 
 </script>
 

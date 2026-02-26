@@ -1,9 +1,12 @@
 <template>
   <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center text-2xl uppercase font-semibold">SERVIDORES</ion-title>
+      </ion-toolbar>
+    </ion-header>
     <ion-content :fullscreen="true" class="main-bg">
       <div class="flex flex-col items-center p-5">
-        <h1 class="text-white text-3xl tracking-[2px] font-light my-4 italic">SERVIDORES</h1>
-
         <div class="flex items-center gap-4 w-full max-w-150 mb-6">
           <div class="flex-1 flex items-center bg-[#2d2d2d]/90 rounded-full px-5 py-2 border border-[#444]">
             <input 
@@ -104,7 +107,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import { IonPage, IonContent, IonIcon } from '@ionic/vue';
+import { IonPage, IonContent, IonIcon, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 import { 
   searchOutline, pricetagOutline, star, bookmarkOutline, bookmark, checkmark, 
   checkbox

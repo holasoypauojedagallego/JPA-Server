@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Create Server</ion-title>
+        <ion-title class="ion-text-center text-2xl uppercase font-semibold">Create Server</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
