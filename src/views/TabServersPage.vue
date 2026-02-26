@@ -41,7 +41,7 @@
                     :icon="star" 
                     @click.stop="server.stars = i"
                     class="text-[16px] mr-px cursor-pointer transition-all duration-200" 
-                    :class="i <= server.stars ? 'text-[#ffd700] drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]' : 'text-black/30 hover:text-[#ffd700]/50'"
+                    :class="i <= server.stars ? 'text-[#ffd700] hover:text-black/60 drop-shadow-[0_0_3px_rgba(255,215,0,0.5)]' : 'text-black/30 hover:text-[#ffd700]/50'"
                   ></ion-icon>
                   </div>
                   <span class="text-white text-xs font-semibold">{{ server.users }}</span>
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div v-if="showFilters" class="fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+      <div v-if="showFilters" class="fixed inset-0 z-1000 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
         <div class="w-full max-w-[320px] rounded-3xl border border-[#c31d1d] bg-[#1c1c1c] p-6 flex flex-col shadow-2xl animate-in fade-in zoom-in duration-200">
           
           <h2 class="mb-3 text-center text-[13px] text-[#7a7a7a] uppercase tracking-wider font-bold">Número Máximo de Jugadores</h2>
@@ -87,7 +87,7 @@
           <div class="flex flex-col gap-4 my-2">
             <div v-for="f in filterOptions" :key="f.label" @click="f.val = !f.val" class="flex justify-between items-center cursor-pointer group">
               <span :class="f.val ? 'text-white' : 'text-[#ccc]'" class="text-sm transition-colors">{{ f.label }}</span>
-              <div :class="f.val ? 'bg-[#c31d1d]' : 'bg-transparent border border-[#444]'" class="w-5 h-5 rounded-[4px] flex items-center justify-center transition-all">
+              <div :class="f.val ? 'bg-[#c31d1d]' : 'bg-transparent border border-[#444]'" class="w-5 h-5 rounded-sm flex items-center justify-center transition-all">
                 <ion-icon v-if="f.val" :icon="checkmark" class="text-white text-[14px]"></ion-icon>
               </div>
             </div>
@@ -139,6 +139,7 @@ const toggleFavorite = (server: any) => { server.isFavorite = !server.isFavorite
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
 .custom-slider {
+  appearance: none;
   -webkit-appearance: none;
   width: 100%;
   height: 4px;
