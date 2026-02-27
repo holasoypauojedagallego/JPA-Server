@@ -63,11 +63,10 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-// Controlamos en qué parte del proceso estamos (1, 2, 3 o 4)
 const step = ref(1);
 
 const goToLogin = () => {
-  step.value = 1; // Reseteamos para la próxima vez
+  step.value = 1;
   router.push('/login'); 
 };
 </script>

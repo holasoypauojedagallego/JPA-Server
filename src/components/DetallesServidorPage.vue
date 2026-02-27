@@ -2,7 +2,6 @@
     <div class="min-h-full flex items-center justify-center p-4 animate-in zoom-in duration-300">
       <div class="bg-[#8b0000] w-full max-w-212.5 rounded-[30px] p-8 relative shadow-2xl border border-white/10">
         
-        <!-- TOP: Imagen + Info -->
         <div class="flex flex-col md:flex-row gap-10 mb-8">
           <div class="flex flex-col items-center gap-4 text-center">
             <img :src="server.image" class="w-48 h-48 rounded-full border-4 border-white/20 shadow-2xl object-cover" />
@@ -20,15 +19,12 @@
           </div>
         </div>
   
-        <!-- MAPA + BOTONES -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6 items-center">
   
-          <!-- 🗺 MAPA IZQUIERDA -->
           <div>
             <div id="map" class="w-full h-72 rounded-xl"></div>
           </div>
   
-          <!-- 🔘 BOTONES DERECHA (más arriba) -->
           <div class="flex flex-col items-center gap-5 pt-6 align-center">
             <ion-button 
               @click="handleJoin" 
@@ -49,10 +45,8 @@
   
         </div>
   
-        <!-- ICONOS INFERIORES -->
         <div class="flex justify-between items-end mt-10 px-2 w-full gap-1">
   
-          <!-- Señal izquierda -->
           <div class="flex items-end gap-1.5 h-10">
             <div v-for="i in 4" :key="i"
               class="sm:w-2 w-1 rounded-sm"
@@ -61,7 +55,6 @@
             </div>
           </div>
   
-          <!-- Derecha: estrellas + usuarios + favorito -->
           <div class="flex items-center sm:gap-6 gap-4">
   
             <div class="flex sm:gap-1 gap-0.5">
@@ -87,7 +80,6 @@
           </div>
         </div>
   
-        <!-- Overlay Uniéndose -->
         <div v-if="isJoining" class="absolute inset-0 bg-black/60 backdrop-blur-sm rounded-[30px] flex items-center justify-center z-9999">          <div class="bg-[#1c1c1c] px-12 py-8 rounded-[25px] border-2 border-[#1a6596] shadow-2xl text-center">
             <div class="mb-4 flex justify-center">
               <div class="w-8 h-8 border-4 border-[#1a6596] border-t-transparent rounded-full animate-spin"></div>

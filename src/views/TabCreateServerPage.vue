@@ -89,11 +89,11 @@
               @touchstart="startPress" 
               @touchend="endPress"
               fill="solid"
-              class="custom-btn btn-blue w-full sm:w-60 h-12.5 font-bold uppercase italic tracking-[2px] relative overflow-hidden"
+              class="custom-btn btn-blue w-full sm:w-60 h-12.5 font-bold uppercase italic tracking-[2px]"
               
             >
               <div 
-                class="absolute left-0 top-0 h-full bg-[#134a6e] transition-all duration-100 ease-linear pointer-events-none"
+                class="absolute left-0 top-0 h-full bg-[#134a6e] transition-all duration-100 ease-linear pointer-events-"
                 :style="{ width: pressProgress + '%' }"
               ></div>
               <span class="relative z-10">Crear Servidor</span>
@@ -131,7 +131,6 @@ import {
 } from '@ionic/vue';
 import { imageOutline, checkmarkOutline } from 'ionicons/icons';
 
-// Datos del formulario
 const serverData = ref({
   titulo: '',
   circuito: '',
@@ -139,7 +138,6 @@ const serverData = ref({
   maxJugadores: 12
 });
 
-// Regiones
 const regiones = ref([
   { id: 'eu', name: 'EU', selected: true },
   { id: 'na', name: 'NA', selected: false },
@@ -150,7 +148,6 @@ const regiones = ref([
 
 const mostrarMensaje = ref(false);
 
-// Lógica para mantener pulsado 3 segundos
 const isPressing = ref(false);
 const pressProgress = ref(0);
 let pressTimer: any = null;
@@ -160,7 +157,6 @@ const startPress = () => {
   isPressing.value = true;
   pressProgress.value = 0;
   
-  // Timer para ejecutar la acción tras 3 segundos
   pressTimer = setTimeout(() => {
     if (isPressing.value) {
       crearServidor();
@@ -168,14 +164,13 @@ const startPress = () => {
     }
   }, 1700);
 
-  // Intervalo para actualizar la barra de progreso visual
   progressInterval = setInterval(() => {
     if (isPressing.value && pressProgress.value < 100) {
       pressProgress.value += 2;
     } else {
       clearInterval(progressInterval);
     }
-  }, 30); // Actualiza cada 30ms para suavidad
+  }, 30); 
 };
 
 const endPress = () => {
@@ -216,7 +211,6 @@ const crearServidor = () => {
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-/* REGIONES (Píldoras) estilo idéntico al filtro */
 .region-pill {
   display: flex;
   align-items: center;
@@ -241,35 +235,27 @@ const crearServidor = () => {
 .checkbox-selected { background-color: #000; }
 .pill-unselected .checkbox-box { border: 1px solid #444; }
 
-/* BOTONES PERSONALIZADOS SIN BORDE NEGRO */
 .custom-btn {
   --border-width: 2px;
   --border-style: solid;
   --border-color: black;
   --border-radius: 999px;
   
-  --box-shadow: 0 4px 0px rgba(0,0,0,0.4); /* Sombra 3D inferior */
+  --box-shadow: 0 4px 0px rgba(0,0,0,0.4); 
   margin: 0;
   user-select: none;
   position: relative;
 }
 
-/* Tipografía de los botones */
-ion-button::part(native) { 
-  font-style: italic !important; 
-  font-weight: 700 !important;
-}
 
-.btn-blue { --background: #1a6596; } /* Azul base */
-.btn-red { --background: #c31d1d; } /* Rojo base */
+.btn-blue { --background: #1a6596; } 
+.btn-red { --background: #c31d1d; } 
 
-/* Efecto al pulsar el botón */
 .custom-btn:active {
-  transform: translateY(2px); /* Se hunde un poco */
-  --box-shadow: 0 2px 0px rgba(0,0,0,0.4); /* Sombra más pequeña */
+  transform: translateY(2px); 
+  --box-shadow: 0 2px 0px rgba(0,0,0,0.4); 
 }
 
-/* SLIDER */
 .custom-slider {
   appearance: none;
   -webkit-appearance: none;

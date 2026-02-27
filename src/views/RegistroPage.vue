@@ -30,7 +30,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
   
   const goToLogin = () => {
-    router.push('/login'); // Regresa a la vista de login
+    router.push('/login'); 
   };
 
   const handleRegister = () => {
@@ -52,7 +52,7 @@ const router = useRouter();
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 5vh; /* Ligeramente más arriba por tener más inputs */
+    padding-top: 5vh; 
   }
   
   .login-title {
