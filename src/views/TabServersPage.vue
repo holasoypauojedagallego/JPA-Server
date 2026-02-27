@@ -124,7 +124,6 @@ const showFilters = ref(false);
 const maxPlayers = ref(16);
 const servers = ref(dbservers);
 
-// NUEVO: Variables de navegación y región múltiple
 const selectedServer = ref<any>(null);
 const seleccionadas = ref(['EU']);
 

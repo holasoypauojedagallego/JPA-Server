@@ -79,6 +79,3 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonText } from '@ionic/vue';
 import Image from 'primevue/image';
 </script>
-
-<style scoped>
-</style>
