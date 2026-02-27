@@ -2,16 +2,16 @@
   <ion-page class="font-exo">
     <ion-header shadow="none">
       <ion-toolbar>
-        <ion-title class="ion-text-center text-2xl uppercase font-bold italic tracking-widest">
+        <ion-title class="ion-text-center text-2xl uppercase">
           CREAR SERVIDOR
         </ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <div class="min-h-full flex flex-col items-center p-6 bg-[#121212]">
+      <div class="min-h-full flex flex-col items-center justify-center p-6 bg-[#121212]">
         
-        <div class="bg-[#8b0000] w-full max-w-225 rounded-[30px] p-8 md:p-10 relative shadow-2xl border border-white/10 mt-4">
+        <div class="bg-[#8b0000] w-full max-w-225 rounded-[30px] p-8 md:p-10 relative shadow-2xl border border-white/10 mb-7">
           
           <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             
