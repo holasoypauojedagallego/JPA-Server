@@ -11,14 +11,15 @@
       <div class="flex h-full">
         <!-- 1 parte de la pagina, contactos -->
 
-        <div class="sm:w-3/7 lg:w-2/7 w-full sm:border-r sm:border-gray-700 justify-items-center sm:overflow-y-auto">
-          <div v-for="amigo in amigos" :key="amigo.id" class="flex flex-col items-center mt-6 sm:mt-7 sm:items-start sm:ml-15">
+        <div class="sm:w-3/7 lg:w-2/7 w-full sm:border-r sm:border-gray-700 justify-items-center sm:overflow-y-auto overflow-x-hidden">
+          <div v-for="amigo in amigos" :key="amigo.id" class="w-full flex flex-col items-center my-6 sm:ml-2 sm:mr-1">
             <Amigo
               :name=amigo.name 
               :lastMessage=amigo.lastMessage 
               :img=amigo.img
               :noLeido=amigo.noLeido
-              @click="seleccionarAmigo(amigo)">
+              @click="seleccionarAmigo(amigo)"
+              class="w-[90%]">
             </Amigo>
           </div>
         </div>
@@ -32,12 +33,16 @@
               <Image :src="amigoSeleccionado.img" imageClass="w-20 h-20 rounded-full ml-[3vw]" preview/>
               <h2 class="text-lg font-bold m-auto truncate">
                 {{ amigoSeleccionado.name }}
-              </h2>            
+              </h2>
             </div>
 
             <div class="flex-1 p-4 overflow-y-auto">
-              <div class="mb-2">
-                {{ amigoSeleccionado.lastMessage }}
+              <div class="mb-2 flex justify-start flex-col gap-4">
+                <MensajeRival texto="Hola, a esto se le conoce como un mensaje de prueba, para ver el correcto funcionamiento del componente, y que el docente pueda ver que funciona correctamente, y abajo hay un mensaje que cambia dependiendo de la persona, de hecho si escribe y pulsa el boton de enviar, se enviara texto, lo cual es una función chula a mi parecer"></MensajeRival>
+                <MensajeRival :texto="amigoSeleccionado.lastMessage"></MensajeRival>
+              </div>
+              <div v-for="mensajito in mensajes" class="flex justify-end mb-4">
+                <Mensaje :texto="mensajito" class="self-end"></Mensaje>
               </div>
             </div>
 
@@ -55,7 +60,7 @@
 
           </div>
 
-          <!-- Si no hay chat seleccionado -->
+          <!-- 2 parte de la pagina, si no ha seleccionado nada -->
           <div v-else class="flex items-center justify-center h-full text-gray-500">
             Selecciona una conversación
           </div>
@@ -74,6 +79,8 @@ import { ref } from 'vue';
 import { dbamigos } from '@/components/datos';
 import Image from 'primevue/image';
 import { send } from 'ionicons/icons';
+import Mensaje from '@/components/Mensaje.vue';
+import MensajeRival from '@/components/MensajeRival.vue';
 
 let amigos = ref(dbamigos);
 
@@ -85,8 +92,13 @@ const seleccionarAmigo = (amigo:any) => {
 
 const mensaje = ref();
 
+let mensajes: string[] = [];
+
 const mensajeVolver = () => {
-  mensaje.value = "";
+  if (mensaje.value != "" ){
+    mensajes.push(mensaje.value);
+    mensaje.value = "";
+  }
 }
 
 
